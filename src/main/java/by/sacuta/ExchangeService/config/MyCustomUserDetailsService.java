@@ -31,12 +31,14 @@ public class MyCustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserDetails loadedUser;
+     UserDetails loadedUser;
         try {
-            loadedUser = new User(
-                      profileService.findByUsername(username).getUsername()
-                    , profileService.findByUsername(username).getPassword()
-                    , profileService.findByUsername(username).getRoles());
+            Profile profile= profileService.findByUsername(username);
+            loadedUser =new User(
+                       profile.getUsername()
+                    , profile.getPassword()
+                    , profile.getRoles())
+            ;
             System.out.println(username);
         } catch (Exception repositoryProblem) {
              throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
