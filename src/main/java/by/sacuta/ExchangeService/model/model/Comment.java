@@ -21,7 +21,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile")
-    private Role.Profile profile;
+    private Profile profile;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "course_comment",
@@ -30,7 +30,7 @@ public class Comment {
     private List<Course> courses = new LinkedList<>();
 
 
-    public Comment(String message, Role.Profile profile) {
+    public Comment(String message, Profile profile) {
         this.message = message;
         this.profile=profile;
     }

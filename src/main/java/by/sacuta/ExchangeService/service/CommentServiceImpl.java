@@ -1,6 +1,7 @@
 package by.sacuta.ExchangeService.service;
 
 import by.sacuta.ExchangeService.dao.CommentDao;
+import by.sacuta.ExchangeService.model.model.Profile;
 import by.sacuta.ExchangeService.model.model.Role;
 import by.sacuta.ExchangeService.model.model.Comment;
 import by.sacuta.ExchangeService.service.api.CommentService;
@@ -18,7 +19,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void createNewComment(String massage, Role.Profile profile) {
+    public void createNewComment(String massage, Profile profile) {
         commentDao.save(new Comment(massage, profile));
     }
 
