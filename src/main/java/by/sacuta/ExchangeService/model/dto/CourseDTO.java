@@ -1,11 +1,12 @@
 package by.sacuta.ExchangeService.model.dto;
 
 import by.sacuta.ExchangeService.model.enums.CourseStatus;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
-
+@Data
 public class CourseDTO {
 
     private Long id;

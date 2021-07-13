@@ -25,15 +25,13 @@ public class MyCustomUserDetailsService implements UserDetailsService {
     private RoleDao roleDao;
     @Autowired
     private ProfileDao profileDao;
-    @Autowired
-    private ProfileService profileService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
      UserDetails loadedUser;
         try {
-            Profile profile= profileService.findByUsername(username);
+            Profile profile= profileDao.findByUsername(username);
             loadedUser =new User(
                        profile.getUsername()
                     , profile.getPassword()
@@ -56,7 +54,7 @@ public class MyCustomUserDetailsService implements UserDetailsService {
         }
         if (b) {
             List<Role> roles=new LinkedList<>();
-            roles.add(roleDao.getById(1l));
+            roles.add(roleDao.getById(1L));
             profile.setRoles(roles);
             profile.setPassword((profile.getPassword()));
             profileDao.save(profile);
