@@ -1,4 +1,4 @@
-package by.sacuta.ExchangeService.model;
+package by.sacuta.ExchangeService.model.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +21,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile")
-    private Profile profile;
+    private Role.Profile profile;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "course_comment",
@@ -30,7 +30,7 @@ public class Comment {
     private List<Course> courses = new LinkedList<>();
 
 
-    public Comment(String message, Profile profile) {
+    public Comment(String message, Role.Profile profile) {
         this.message = message;
         this.profile=profile;
     }

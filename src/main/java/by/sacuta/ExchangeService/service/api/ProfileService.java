@@ -1,34 +1,33 @@
 package by.sacuta.ExchangeService.service.api;
 
-import by.sacuta.ExchangeService.model.Course;
-import by.sacuta.ExchangeService.model.Lesson;
-import by.sacuta.ExchangeService.model.Profile;
+import by.sacuta.ExchangeService.model.model.Role;
+import by.sacuta.ExchangeService.model.model.Course;
+import by.sacuta.ExchangeService.model.model.Lesson;
 import by.sacuta.ExchangeService.model.enums.ProfileStatus;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
 public interface ProfileService {
-    Profile findByUsername(String username);
+    Role.Profile findByUsername(String username);
 
     void createNewProfile(String username, String password, String name, String lastname, Integer age, String email, String city, ProfileStatus status);
 
-    void save(Profile clients);
+    void save(Role.Profile clients);
 
     void delete(Long id);
 
-    void update(Profile clients);
+    void update(Role.Profile clients);
 
-    Profile findByID(Long id);
+    Role.Profile findByID(Long id);
 
-    List<Profile> getAll();
+    List<Role.Profile> getAll();
 
-    Profile getByUsername(String username);
+    Role.Profile getByUsername(String username);
 
     List<Course> getAllMyCourse(String username);
 
     List<Lesson> getActualLesson(String username);
 
-    List<Profile> getAllSpeaker();
+    List<Role.Profile> getAllSpeaker();
 }

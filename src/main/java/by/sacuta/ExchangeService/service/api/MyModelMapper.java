@@ -1,13 +1,13 @@
 package by.sacuta.ExchangeService.service.api;
 
-import by.sacuta.ExchangeService.dto.CommentDTO;
-import by.sacuta.ExchangeService.dto.CourseDTO;
-import by.sacuta.ExchangeService.dto.LessonDTO;
-import by.sacuta.ExchangeService.dto.ProfileDTO;
-import by.sacuta.ExchangeService.model.Comment;
-import by.sacuta.ExchangeService.model.Course;
-import by.sacuta.ExchangeService.model.Lesson;
-import by.sacuta.ExchangeService.model.Profile;
+import by.sacuta.ExchangeService.model.dto.CommentDTO;
+import by.sacuta.ExchangeService.model.dto.CourseDTO;
+import by.sacuta.ExchangeService.model.dto.LessonDTO;
+import by.sacuta.ExchangeService.model.dto.ProfileDTO;
+import by.sacuta.ExchangeService.model.model.Role;
+import by.sacuta.ExchangeService.model.model.Comment;
+import by.sacuta.ExchangeService.model.model.Course;
+import by.sacuta.ExchangeService.model.model.Lesson;
 
 public interface MyModelMapper {
     CommentDTO mapToCommentDTO(Comment comment);
@@ -22,7 +22,7 @@ public interface MyModelMapper {
 
     Lesson mapToLesson(LessonDTO lessonDTO);
 
-    ProfileDTO mapToProfileDTO(Profile profile);
+    ProfileDTO mapToProfileDTO(Role.Profile profile);
 
-    Profile mapToProfile(ProfileDTO profileDTO);
+    Role.Profile mapToProfile(ProfileDTO profileDTO);
 }

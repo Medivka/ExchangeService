@@ -1,4 +1,4 @@
-package by.sacuta.ExchangeService.dto;
+package by.sacuta.ExchangeService.model.dto;
 
 import by.sacuta.ExchangeService.model.enums.LessonStatus;
 import java.time.LocalDateTime;

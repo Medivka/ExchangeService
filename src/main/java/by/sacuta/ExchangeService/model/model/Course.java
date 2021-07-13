@@ -1,4 +1,4 @@
-package by.sacuta.ExchangeService.model;
+package by.sacuta.ExchangeService.model.model;
 
 import by.sacuta.ExchangeService.model.enums.CourseStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,7 +36,7 @@ public class Course {
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "speaker")
-        private Profile speaker;
+        private Role.Profile speaker;
 
         @Enumerated(EnumType.STRING)
         private CourseStatus courseStatus;
@@ -62,7 +62,7 @@ public class Course {
         @JoinTable(name = "course_profile",
                 joinColumns = @JoinColumn(name = "id_course"),
                 inverseJoinColumns = @JoinColumn(name = "id_profile"))
-        private List<Profile> listeners = new LinkedList<>();
+        private List<Role.Profile> listeners = new LinkedList<>();
         private Integer price;
 
     }

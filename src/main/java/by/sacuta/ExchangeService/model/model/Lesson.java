@@ -1,6 +1,7 @@
-package by.sacuta.ExchangeService.model;
+package by.sacuta.ExchangeService.model.model;
 
 import by.sacuta.ExchangeService.model.enums.LessonStatus;
+import by.sacuta.ExchangeService.model.model.Course;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;

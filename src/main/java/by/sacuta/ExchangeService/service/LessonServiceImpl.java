@@ -1,7 +1,7 @@
 package by.sacuta.ExchangeService.service;
 
 import by.sacuta.ExchangeService.dao.LessonDao;
-import by.sacuta.ExchangeService.model.Lesson;
+import by.sacuta.ExchangeService.model.model.Lesson;
 import by.sacuta.ExchangeService.model.enums.LessonStatus;
 import by.sacuta.ExchangeService.service.api.LessonService;
 import org.springframework.stereotype.Service;

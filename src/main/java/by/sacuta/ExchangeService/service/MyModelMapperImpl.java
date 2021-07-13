@@ -1,15 +1,14 @@
 package by.sacuta.ExchangeService.service;
 
-import by.sacuta.ExchangeService.dto.CommentDTO;
-import by.sacuta.ExchangeService.dto.CourseDTO;
-import by.sacuta.ExchangeService.dto.LessonDTO;
-import by.sacuta.ExchangeService.dto.ProfileDTO;
-import by.sacuta.ExchangeService.model.Comment;
-import by.sacuta.ExchangeService.model.Course;
-import by.sacuta.ExchangeService.model.Lesson;
-import by.sacuta.ExchangeService.model.Profile;
+import by.sacuta.ExchangeService.model.dto.CommentDTO;
+import by.sacuta.ExchangeService.model.dto.CourseDTO;
+import by.sacuta.ExchangeService.model.dto.LessonDTO;
+import by.sacuta.ExchangeService.model.dto.ProfileDTO;
+import by.sacuta.ExchangeService.model.model.Role;
+import by.sacuta.ExchangeService.model.model.Comment;
+import by.sacuta.ExchangeService.model.model.Course;
+import by.sacuta.ExchangeService.model.model.Lesson;
 import by.sacuta.ExchangeService.service.api.MyModelMapper;
-import lombok.extern.log4j.Log4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -59,15 +58,15 @@ public class MyModelMapperImpl implements MyModelMapper {
     }
 
     @Override
-    public ProfileDTO mapToProfileDTO(Profile profile) {
+    public ProfileDTO mapToProfileDTO(Role.Profile profile) {
 //        logger.log(Level.INFO, "map To ClientDTO " + clients);
         return modelMapper.map(profile, ProfileDTO.class);
     }
 
     @Override
-    public Profile mapToProfile(ProfileDTO profileDTO) {
+    public Role.Profile mapToProfile(ProfileDTO profileDTO) {
 //        logger.log(Level.INFO, "map To clients " + clientDTO);
-        return modelMapper.map(profileDTO, Profile.class);
+        return modelMapper.map(profileDTO, Role.Profile.class);
     }
 
 

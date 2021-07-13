@@ -1,10 +1,7 @@
-package by.sacuta.ExchangeService.dto;
+package by.sacuta.ExchangeService.model.dto;
 
-import by.sacuta.ExchangeService.model.Role;
 import by.sacuta.ExchangeService.model.enums.ProfileStatus;
 import lombok.Data;
-
-import java.util.List;
 
 @Data
 public class ProfileDTO {

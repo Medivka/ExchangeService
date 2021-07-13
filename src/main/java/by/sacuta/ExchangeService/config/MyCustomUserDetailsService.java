@@ -2,8 +2,7 @@ package by.sacuta.ExchangeService.config;
 
 import by.sacuta.ExchangeService.dao.ProfileDao;
 import by.sacuta.ExchangeService.dao.RoleDao;
-import by.sacuta.ExchangeService.model.Profile;
-import by.sacuta.ExchangeService.model.Role;
+import by.sacuta.ExchangeService.model.model.Role;
 
 import by.sacuta.ExchangeService.service.api.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +44,11 @@ public class MyCustomUserDetailsService implements UserDetailsService {
         return loadedUser;
     }
 
-    public boolean saveUser(Profile profile) {
+    public boolean saveUser(Role.Profile profile) {
 
         boolean b = true;
         for (int i = 0; i < profileDao.findAll().size(); i++) {
-            Profile profile1 = profileDao.findAll().get(i);
+            Role.Profile profile1 = profileDao.findAll().get(i);
             if (profile1.getUsername().equals(profile.getUsername())) {
                 b = false;
             }
