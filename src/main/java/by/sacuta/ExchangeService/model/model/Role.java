@@ -20,7 +20,7 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String role;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "profile_role",
             joinColumns = {@JoinColumn(name = "role_id")},
             inverseJoinColumns = @JoinColumn(name = "client_id"))

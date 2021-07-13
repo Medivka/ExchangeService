@@ -9,6 +9,7 @@ import by.sacuta.ExchangeService.model.enums.CourseStatus;
 import by.sacuta.ExchangeService.model.enums.ProfileStatus;
 import by.sacuta.ExchangeService.service.api.CourseService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class CourseServiceImpl implements CourseService {
     private final CourseDao courseDao;
     private final CommentDao commentDao;

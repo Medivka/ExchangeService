@@ -6,10 +6,12 @@ import by.sacuta.ExchangeService.model.model.Role;
 import by.sacuta.ExchangeService.model.model.Comment;
 import by.sacuta.ExchangeService.service.api.CommentService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class CommentServiceImpl implements CommentService {
 
     private final CommentDao commentDao;

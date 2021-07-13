@@ -10,6 +10,7 @@ import by.sacuta.ExchangeService.model.model.Role;
 import by.sacuta.ExchangeService.model.enums.ProfileStatus;
 import by.sacuta.ExchangeService.service.api.ProfileService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ProfileServiceImpl implements ProfileService {
 
     private final ProfileDao profileDao;

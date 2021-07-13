@@ -5,12 +5,14 @@ import by.sacuta.ExchangeService.model.model.Lesson;
 import by.sacuta.ExchangeService.model.enums.LessonStatus;
 import by.sacuta.ExchangeService.service.api.LessonService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
 @Service
+@Transactional
 public class LessonServiceImpl implements LessonService {
     private final LessonDao lessonDao;
 

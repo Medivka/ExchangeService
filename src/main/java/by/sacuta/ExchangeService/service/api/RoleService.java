@@ -1,7 +1,9 @@
 package by.sacuta.ExchangeService.service.api;
 
-import org.springframework.stereotype.Service;
+import by.sacuta.ExchangeService.model.model.Role;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 
-public interface RoleService {
+public interface RoleService extends JpaRepository<Role,Long> {
 }

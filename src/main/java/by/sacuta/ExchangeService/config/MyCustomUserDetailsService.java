@@ -28,20 +28,12 @@ public class MyCustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Profile profile = profileDao.findByUsername(username);
 
-     UserDetails loadedUser;
-        try {
-            Profile profile= profileDao.findByUsername(username);
-            loadedUser =new User(
-                       profile.getUsername()
-                    , profile.getPassword()
-                    , profile.getRoles())
-            ;
-            System.out.println(username);
-        } catch (Exception repositoryProblem) {
-             throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
+        if (profile == null) {
+            throw new UsernameNotFoundException("profile not found");
         }
-        return loadedUser;
+        return profile;
     }
 
     public boolean saveUser(Profile profile) {
