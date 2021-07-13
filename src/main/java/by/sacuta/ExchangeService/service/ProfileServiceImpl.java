@@ -30,8 +30,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Role.Profile findByUsername(String username){
-        System.out.println(username);
-        System.out.println(profileDao.findById(1l));
+
         return profileDao.findByUsername(username);
     }
 

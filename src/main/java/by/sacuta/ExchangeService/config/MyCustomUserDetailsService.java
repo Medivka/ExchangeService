@@ -20,7 +20,6 @@ import java.util.List;
 @Service
 public class MyCustomUserDetailsService implements UserDetailsService {
 
-
     @Autowired
     private RoleDao roleDao;
     @Autowired
@@ -28,24 +27,22 @@ public class MyCustomUserDetailsService implements UserDetailsService {
     @Autowired
     private ProfileService profileService;
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         UserDetails loadedUser;
         try {
-
             loadedUser = new User(
-                    profileService.findByUsername(username).getUsername(), profileService.findByUsername(username).getPassword(),
-                    profileService.findByUsername(username).getRoles());
+                      profileService.findByUsername(username).getUsername()
+                    , profileService.findByUsername(username).getPassword()
+                    , profileService.findByUsername(username).getRoles());
         } catch (Exception repositoryProblem) {
-            throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
+             throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
         }
         return loadedUser;
     }
 
     public boolean saveUser(Role.Profile profile) {
-
         boolean b = true;
         for (int i = 0; i < profileDao.findAll().size(); i++) {
             Role.Profile profile1 = profileDao.findAll().get(i);
@@ -59,7 +56,6 @@ public class MyCustomUserDetailsService implements UserDetailsService {
             profile.setRoles(roles);
             profile.setPassword((profile.getPassword()));
             profileDao.save(profile);
-
         }
         return true;
     }
