@@ -2,6 +2,7 @@ package by.sacuta.ExchangeService.config;
 
 import by.sacuta.ExchangeService.dao.ProfileDao;
 import by.sacuta.ExchangeService.dao.RoleDao;
+import by.sacuta.ExchangeService.model.model.Profile;
 import by.sacuta.ExchangeService.model.model.Role;
 
 import by.sacuta.ExchangeService.service.api.ProfileService;
@@ -36,16 +37,17 @@ public class MyCustomUserDetailsService implements UserDetailsService {
                       profileService.findByUsername(username).getUsername()
                     , profileService.findByUsername(username).getPassword()
                     , profileService.findByUsername(username).getRoles());
+            System.out.println(username);
         } catch (Exception repositoryProblem) {
              throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
         }
         return loadedUser;
     }
 
-    public boolean saveUser(Role.Profile profile) {
+    public boolean saveUser(Profile profile) {
         boolean b = true;
         for (int i = 0; i < profileDao.findAll().size(); i++) {
-            Role.Profile profile1 = profileDao.findAll().get(i);
+            Profile profile1 = profileDao.findAll().get(i);
             if (profile1.getUsername().equals(profile.getUsername())) {
                 b = false;
             }

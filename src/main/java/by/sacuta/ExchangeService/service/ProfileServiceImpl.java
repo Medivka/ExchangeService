@@ -5,6 +5,7 @@ import by.sacuta.ExchangeService.dao.ProfileDao;
 import by.sacuta.ExchangeService.dao.RoleDao;
 import by.sacuta.ExchangeService.model.model.Course;
 import by.sacuta.ExchangeService.model.model.Lesson;
+import by.sacuta.ExchangeService.model.model.Profile;
 import by.sacuta.ExchangeService.model.model.Role;
 import by.sacuta.ExchangeService.model.enums.ProfileStatus;
 import by.sacuta.ExchangeService.service.api.ProfileService;
@@ -29,24 +30,24 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public Role.Profile findByUsername(String username){
+    public Profile findByUsername(String username){
 
         return profileDao.findByUsername(username);
     }
 
     @Override
     public void createNewProfile(String username, String password, String name, String lastname, Integer age, String email, String city, ProfileStatus status) {
-        Role.Profile client = new Role.Profile(username, password, name, lastname, age, email, city, status);
+       Profile client = new Profile(username, password, name, lastname, age, email, city, status);
 
         save(client);
     }
 
     @Override
-    public void save(Role.Profile profile) {
-        List<Role.Profile> profileList = profileDao.findAll();
+    public void save(Profile profile) {
+        List<Profile> profileList = profileDao.findAll();
         boolean b = true;
         for (int i = 0; i < profileList.size(); i++) {
-            Role.Profile prof = profileList.get(i);
+            Profile prof = profileList.get(i);
             if (prof.getUsername().equals(profile.getUsername())) {
                 b = false;
             }
@@ -66,23 +67,23 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public void update(Role.Profile profile) {
+    public void update(Profile profile) {
         profileDao.save(profile);
 
     }
 
     @Override
-    public Role.Profile findByID(Long id) {
+    public Profile findByID(Long id) {
         return profileDao.getById(id);
     }
 
     @Override
-    public List<Role.Profile> getAll() {
+    public List<Profile> getAll() {
         return profileDao.findAll();
     }
 
     @Override
-    public Role.Profile getByUsername(String username) {
+    public Profile getByUsername(String username) {
 
         return profileDao.findByUsername(username);
     }
@@ -93,8 +94,8 @@ public class ProfileServiceImpl implements ProfileService {
         List<Course> myCourses = new LinkedList<>();
         List<Course> allCourses = courseDao.findAll();
         for (Course co : allCourses) {
-            List<Role.Profile> clients1 = co.getListeners();
-            for (Role.Profile cli : clients1) {
+           List<Profile> profileList=profileDao.findAll();
+            for (Profile cli : profileList) {
                 if (cli.getUsername().equals(username)) {
                     System.out.println(username);
                     myCourses.add(co);
@@ -122,9 +123,9 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public List<Role.Profile> getAllSpeaker() {
-        List<Role.Profile> speakers = new LinkedList<>();
-        for (Role.Profile prof : profileDao.findAll()
+    public List<Profile> getAllSpeaker() {
+        List<Profile> speakers = new LinkedList<>();
+        for (Profile prof : profileDao.findAll()
         ) {
             if (prof.getStatus().equals(ProfileStatus.SPEAKER)) {
                 speakers.add(prof);

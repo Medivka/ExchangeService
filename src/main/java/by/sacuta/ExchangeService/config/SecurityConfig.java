@@ -13,8 +13,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private MyCustomUserDetailsService myCustomUserDetailsService;
+
+    private final MyCustomUserDetailsService myCustomUserDetailsService;
+
+    public SecurityConfig(MyCustomUserDetailsService myCustomUserDetailsService) {
+        this.myCustomUserDetailsService = myCustomUserDetailsService;
+    }
 
     @Bean
     public ModelMapper modelMapper() {
@@ -31,17 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .permitAll()
                 .authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll()
-                .and()
                 .httpBasic()
                 .and()
                 .csrf().disable()
-        ;
+                .formLogin()
+//                .loginPage("/login")
+//                .permitAll()
+                .disable()
+                  ;
     }
 
 

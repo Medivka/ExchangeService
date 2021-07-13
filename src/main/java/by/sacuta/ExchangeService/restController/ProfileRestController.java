@@ -3,6 +3,7 @@ package by.sacuta.ExchangeService.restController;
 import by.sacuta.ExchangeService.model.dto.CourseDTO;
 import by.sacuta.ExchangeService.model.dto.LessonDTO;
 import by.sacuta.ExchangeService.model.dto.ProfileDTO;
+import by.sacuta.ExchangeService.model.model.Profile;
 import by.sacuta.ExchangeService.model.model.Role;
 import by.sacuta.ExchangeService.model.model.Course;
 import by.sacuta.ExchangeService.model.model.Lesson;
@@ -32,7 +33,7 @@ public class ProfileRestController {
     public ResponseEntity<List<ProfileDTO>> read() {
 
         final List<ProfileDTO> profileDTOS = new LinkedList<>();
-        for (Role.Profile profile : profileService.getAll()
+        for (Profile profile : profileService.getAll()
         ) {
             profileDTOS.add(myModelMapper.mapToProfileDTO(profile));
         }
@@ -52,8 +53,8 @@ public class ProfileRestController {
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") long id) {
         boolean delete = false;
-        final List<Role.Profile> clients = profileService.getAll();
-        for (Role.Profile clients1 : clients) {
+        final List<Profile> clients = profileService.getAll();
+        for (Profile clients1 : clients) {
             if (clients1.getId() == (id)) {
                 delete = true;
                 profileService.delete(id);
@@ -73,8 +74,8 @@ public class ProfileRestController {
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody ProfileDTO profileDTO) {
         boolean update = false;
-        final List<Role.Profile> profiles = profileService.getAll();
-        for (Role.Profile profile : profiles) {
+        final List<Profile> profiles = profileService.getAll();
+        for (Profile profile : profiles) {
             if (profile.getId() == (id)) {
                 profile = myModelMapper.mapToProfile(profileDTO);
                 update = true;

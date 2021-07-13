@@ -1,9 +1,6 @@
 package by.sacuta.ExchangeService.service.api;
 
-import by.sacuta.ExchangeService.model.model.Role;
-import by.sacuta.ExchangeService.model.model.Comment;
-import by.sacuta.ExchangeService.model.model.Course;
-import by.sacuta.ExchangeService.model.model.Lesson;
+import by.sacuta.ExchangeService.model.model.*;
 import by.sacuta.ExchangeService.model.enums.CourseStatus;
 
 import java.time.LocalDate;
@@ -11,7 +8,7 @@ import java.util.List;
 
 
 public interface CourseService {
-    void createNewCourse(String name, LocalDate startDate, Integer days, Role.Profile speaker, CourseStatus courseStatus, Lesson lesson, Role.Profile clients, Comment comment);
+    void createNewCourse(String name, LocalDate startDate, Integer days, Profile speaker, CourseStatus courseStatus, Lesson lesson, Profile clients, Comment comment);
 
     void save(Course course);
 
@@ -23,9 +20,9 @@ public interface CourseService {
 
     List<Course> getAll();
 
-    void addListener(Course course, Role.Profile client);
+    void addListener(Course course, Profile client);
 
-    void deleteListener(Course course, Role.Profile client);
+    void deleteListener(Course course, Profile client);
 
     void addLesson(Course course, Lesson lesson);
 
@@ -35,7 +32,7 @@ public interface CourseService {
 
     List<Course> getCourseAfterThisDate(LocalDate localDate);
 
-    void changeSpeaker(Course course, Role.Profile speaker);
+    void changeSpeaker(Course course, Profile speaker);
 
     List<Course> findByName(String name);
 }

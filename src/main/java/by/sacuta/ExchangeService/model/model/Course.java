@@ -36,7 +36,7 @@ public class Course {
 
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "speaker")
-        private Role.Profile speaker;
+        private Profile speaker;
 
         @Enumerated(EnumType.STRING)
         private CourseStatus courseStatus;
@@ -62,7 +62,7 @@ public class Course {
         @JoinTable(name = "course_profile",
                 joinColumns = @JoinColumn(name = "id_course"),
                 inverseJoinColumns = @JoinColumn(name = "id_profile"))
-        private List<Role.Profile> listeners = new LinkedList<>();
+        private List<Profile> listeners = new LinkedList<>();
         private Integer price;
 
     }

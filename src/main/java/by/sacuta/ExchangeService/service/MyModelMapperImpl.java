@@ -4,10 +4,7 @@ import by.sacuta.ExchangeService.model.dto.CommentDTO;
 import by.sacuta.ExchangeService.model.dto.CourseDTO;
 import by.sacuta.ExchangeService.model.dto.LessonDTO;
 import by.sacuta.ExchangeService.model.dto.ProfileDTO;
-import by.sacuta.ExchangeService.model.model.Role;
-import by.sacuta.ExchangeService.model.model.Comment;
-import by.sacuta.ExchangeService.model.model.Course;
-import by.sacuta.ExchangeService.model.model.Lesson;
+import by.sacuta.ExchangeService.model.model.*;
 import by.sacuta.ExchangeService.service.api.MyModelMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -58,15 +55,15 @@ public class MyModelMapperImpl implements MyModelMapper {
     }
 
     @Override
-    public ProfileDTO mapToProfileDTO(Role.Profile profile) {
+    public ProfileDTO mapToProfileDTO(Profile profile) {
 //        logger.log(Level.INFO, "map To ClientDTO " + clients);
         return modelMapper.map(profile, ProfileDTO.class);
     }
 
     @Override
-    public Role.Profile mapToProfile(ProfileDTO profileDTO) {
+    public Profile mapToProfile(ProfileDTO profileDTO) {
 //        logger.log(Level.INFO, "map To clients " + clientDTO);
-        return modelMapper.map(profileDTO, Role.Profile.class);
+        return modelMapper.map(profileDTO, Profile.class);
     }
 
 

@@ -4,10 +4,7 @@ import by.sacuta.ExchangeService.dao.CommentDao;
 import by.sacuta.ExchangeService.dao.CourseDao;
 import by.sacuta.ExchangeService.dao.LessonDao;
 import by.sacuta.ExchangeService.dao.ProfileDao;
-import by.sacuta.ExchangeService.model.model.Role;
-import by.sacuta.ExchangeService.model.model.Comment;
-import by.sacuta.ExchangeService.model.model.Course;
-import by.sacuta.ExchangeService.model.model.Lesson;
+import by.sacuta.ExchangeService.model.model.*;
 import by.sacuta.ExchangeService.model.enums.CourseStatus;
 import by.sacuta.ExchangeService.model.enums.ProfileStatus;
 import by.sacuta.ExchangeService.service.api.CourseService;
@@ -33,7 +30,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void createNewCourse(String name, LocalDate startDate, Integer days, Role.Profile speaker, CourseStatus courseStatus, Lesson lesson, Role.Profile clients, Comment comment) {
+    public void createNewCourse(String name, LocalDate startDate, Integer days,Profile speaker, CourseStatus courseStatus, Lesson lesson, Profile clients, Comment comment) {
         Integer price = 0;
         Course course = new Course();
         course.setName(name);
@@ -43,7 +40,7 @@ public class CourseServiceImpl implements CourseService {
         List<Lesson> lessons = new LinkedList<>();
         lessons.add(lesson);
         course.setLessons(lessons);
-        List<Role.Profile> listenerList = new LinkedList<>();
+        List<Profile> listenerList = new LinkedList<>();
         listenerList.add(clients);
         course.setListeners(listenerList);
         course.setSpeaker(speaker);
@@ -88,12 +85,12 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void addListener(Course course, Role.Profile client) {
+    public void addListener(Course course, Profile client) {
         Course course1 = courseDao.getById(course.getId());
-        List<Role.Profile> listenerList = course1.getListeners();
+        List<Profile> listenerList = course1.getListeners();
         boolean b = true;
         for (int i = 0; i < course1.getListeners().size(); i++) {
-            Role.Profile listener = listenerList.get(i);
+           Profile listener = listenerList.get(i);
             if (listener.getUsername().equals(client.getUsername())) {
                 b = false;
             }
@@ -106,11 +103,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void deleteListener(Course course, Role.Profile client) {
+    public void deleteListener(Course course, Profile client) {
         Course course1 = courseDao.getById(course.getId());
-        List<Role.Profile> listenerList = course1.getListeners();
+        List<Profile> listenerList = course1.getListeners();
         for (int i = 0; i < listenerList.size(); i++) {
-            Role.Profile client1 = listenerList.get(i);
+           Profile client1 = listenerList.get(i);
             if (client1.getUsername().equals(client.getUsername())) {
                 listenerList.remove(i);
             }
@@ -174,7 +171,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void changeSpeaker(Course course, Role.Profile speaker) {
+    public void changeSpeaker(Course course, Profile speaker) {
         if (speaker.getStatus().equals(ProfileStatus.SPEAKER)) {
             course.setSpeaker(speaker);
             courseDao.save(course);
