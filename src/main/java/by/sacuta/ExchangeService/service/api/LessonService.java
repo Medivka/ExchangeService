@@ -1,5 +1,6 @@
 package by.sacuta.ExchangeService.service.api;
 
+import by.sacuta.ExchangeService.model.model.Course;
 import by.sacuta.ExchangeService.model.model.Lesson;
 import by.sacuta.ExchangeService.model.enums.LessonStatus;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 public interface LessonService {
 
-    void createNewLesson(String name, LocalDateTime localDateTime, Integer duration, LessonStatus lessonStatus, Integer price);
+    void createNewLesson(String name, Course course, LocalDateTime localDateTime, Integer duration, LessonStatus lessonStatus, Integer price);
 
     void save(Lesson lesson);
 

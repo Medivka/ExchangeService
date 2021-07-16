@@ -1,10 +1,13 @@
 package by.sacuta.ExchangeService.service;
 
 import by.sacuta.ExchangeService.dao.CommentDao;
+import by.sacuta.ExchangeService.exception.MyServiceException;
 import by.sacuta.ExchangeService.model.model.Profile;
 import by.sacuta.ExchangeService.model.model.Role;
 import by.sacuta.ExchangeService.model.model.Comment;
 import by.sacuta.ExchangeService.service.api.CommentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +17,8 @@ import java.util.List;
 @Transactional
 public class CommentServiceImpl implements CommentService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CommentServiceImpl.class);
+
     private final CommentDao commentDao;
 
     public CommentServiceImpl(CommentDao commentDao) {
@@ -22,32 +27,68 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void createNewComment(String massage, Profile profile) {
-        commentDao.save(new Comment(massage, profile));
+        try {
+            commentDao.save(new Comment(massage, profile));
+            LOGGER.info("create new comment");
+        } catch (MyServiceException e) {
+            LOGGER.warn("create new Comment failed ", e);
+            throw new MyServiceException("create new Comment failed ", e);
+        }
     }
 
     @Override
     public List<Comment> getAll() {
-        return commentDao.findAll();
+        try {
+            LOGGER.info("find all comment");
+            return commentDao.findAll();
+        } catch (MyServiceException e) {
+            LOGGER.warn("find all comment failed ", e);
+            throw new MyServiceException("find all comment failed ", e);
+        }
     }
 
     @Override
     public void save(Comment comment) {
-        commentDao.save(comment);
+        try {
+            commentDao.save(comment);
+            LOGGER.info("save comment: " + comment.getId());
+        } catch (MyServiceException e) {
+            LOGGER.warn("save comment failed " + comment.getId(), e);
+            throw new MyServiceException("save comment failed " + comment.getId(), e);
+        }
+
     }
 
     @Override
     public Comment findById(Long id) {
-        return commentDao.getById(id);
+        try {
+            LOGGER.info("find by id comment: " + id);
+            return commentDao.getById(id);
+        } catch (MyServiceException e) {
+            LOGGER.warn("find by id comment failed " + id, e);
+            throw new MyServiceException("find by id comment failed " + id, e);
+        }
     }
 
     @Override
     public void update(Comment comment) {
-        commentDao.save(comment);
-
+        try {
+            LOGGER.info("update comment: " + comment.getId());
+            commentDao.save(comment);
+        } catch (MyServiceException e) {
+            LOGGER.warn("update comment failed " + comment.getId(), e);
+            throw new MyServiceException("update comment failed " + comment.getId(), e);
+        }
     }
 
     @Override
     public void delete(Comment comment) {
-        commentDao.delete(comment);
+        try {
+            LOGGER.info("delete comment: " + comment.getId());
+            commentDao.delete(comment);
+        } catch (MyServiceException e) {
+            LOGGER.warn("delete comment failed " + comment.getId(), e);
+            throw new MyServiceException("delete comment failed " + comment.getId(), e);
+        }
     }
 }

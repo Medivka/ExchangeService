@@ -10,6 +10,7 @@ import java.util.List;
 
 
 public interface ProfileService {
+
     Profile findByUsername(String username);
 
     void createNewProfile(String username, String password, String name, String lastname, Integer age, String email, String city, ProfileStatus status);
@@ -24,7 +25,7 @@ public interface ProfileService {
 
     List<Profile> getAll();
 
-    Profile getByUsername(String username);
+
 
     List<Course> getAllMyCourse(String username);
 

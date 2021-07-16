@@ -15,7 +15,4 @@ public class ProfileDTO {
     private String email;
     private String city;
     private ProfileStatus status;
-
-
-
 }

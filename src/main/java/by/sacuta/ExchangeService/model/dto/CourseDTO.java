@@ -14,7 +14,9 @@ public class CourseDTO {
     private LocalDate startCourse;
     private LocalDate endCourse;
     private Integer days;
+    private SectionDTO section;
     private ProfileDTO speaker;
+
     private CourseStatus courseStatus;
     private List<LessonDTO> lessons = new LinkedList<>();
     private List<CommentDTO> comments = new LinkedList<>();

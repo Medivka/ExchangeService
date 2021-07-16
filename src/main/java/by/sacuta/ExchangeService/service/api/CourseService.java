@@ -8,7 +8,8 @@ import java.util.List;
 
 
 public interface CourseService {
-    void createNewCourse(String name, LocalDate startDate, Integer days, Profile speaker, CourseStatus courseStatus, Lesson lesson, Profile clients, Comment comment);
+
+    void createNewCourse(String name, Section section, LocalDate startDate, Integer days, Profile speaker, CourseStatus courseStatus, Lesson lesson, Profile profile, Comment comment);
 
     void save(Course course);
 
@@ -20,9 +21,9 @@ public interface CourseService {
 
     List<Course> getAll();
 
-    void addListener(Course course, Profile client);
+    void addListener(Course course, Profile profile);
 
-    void deleteListener(Course course, Profile client);
+    void deleteListener(Course course, Profile profile);
 
     void addLesson(Course course, Lesson lesson);
 

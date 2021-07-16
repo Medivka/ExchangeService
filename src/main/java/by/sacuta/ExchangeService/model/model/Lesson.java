@@ -1,7 +1,7 @@
 package by.sacuta.ExchangeService.model.model;
 
 import by.sacuta.ExchangeService.model.enums.LessonStatus;
-import by.sacuta.ExchangeService.model.model.Course;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,20 +30,13 @@ public class Lesson {
     @Enumerated(EnumType.STRING)
     private LessonStatus lessonStatus;
     private Integer price;
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY
-            , cascade = {
-//            CascadeType.MERGE,
-//            CascadeType.REFRESH
-    }
-    )
-    @JoinTable(name = "course_lesson",
-            joinColumns = @JoinColumn(name = "id_lesson"),
-            inverseJoinColumns = @JoinColumn(name = "id_course"))
-    private List<Course> courses = new LinkedList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course")
+    private Course course;
 
-    public Lesson(String name, LocalDateTime localDateTime, Integer duration, LessonStatus lessonStatus, Integer price) {
+    public Lesson(String name,Course course, LocalDateTime localDateTime, Integer duration, LessonStatus lessonStatus, Integer price) {
         this.name = name;
+        this.course=course;
         this.localDateTime = localDateTime;
         this.duration = duration;
         this.lessonStatus = lessonStatus;

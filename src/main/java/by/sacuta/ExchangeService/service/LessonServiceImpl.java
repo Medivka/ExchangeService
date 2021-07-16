@@ -1,9 +1,13 @@
 package by.sacuta.ExchangeService.service;
 
 import by.sacuta.ExchangeService.dao.LessonDao;
+import by.sacuta.ExchangeService.exception.MyServiceException;
+import by.sacuta.ExchangeService.model.model.Course;
 import by.sacuta.ExchangeService.model.model.Lesson;
 import by.sacuta.ExchangeService.model.enums.LessonStatus;
 import by.sacuta.ExchangeService.service.api.LessonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +18,8 @@ import java.util.List;
 @Service
 @Transactional
 public class LessonServiceImpl implements LessonService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(LessonServiceImpl.class);
     private final LessonDao lessonDao;
 
     public LessonServiceImpl(LessonDao lessonDao) {
@@ -21,71 +27,122 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public void createNewLesson(String name, LocalDateTime localDateTime, Integer duration, LessonStatus lessonStatus, Integer price) {
-              lessonDao.save(new Lesson(name, localDateTime,duration ,lessonStatus, price));
+    public void createNewLesson(String name, Course course, LocalDateTime localDateTime, Integer duration, LessonStatus lessonStatus, Integer price) {
+        try {
+            LOGGER.info("create new lesson ");
+            lessonDao.save(new Lesson(name, course, localDateTime, duration, lessonStatus, price));
+        } catch (MyServiceException e) {
+            LOGGER.warn("create new lesson failed ", e);
+            throw new MyServiceException("create new lesson failed ", e);
+        }
     }
 
     @Override
     public void save(Lesson lesson) {
-        lessonDao.save(lesson);
-
+        try {
+            LOGGER.info("save lesson " + lesson.getId());
+            lessonDao.save(lesson);
+        } catch (MyServiceException e) {
+            LOGGER.warn("save lesson failed ", e);
+            throw new MyServiceException("save lesson failed ", e);
+        }
     }
 
     @Override
     public void delete(Long id) {
-        lessonDao.delete(lessonDao.getById(id));
-
+        try {
+            LOGGER.info("delete lesson " + id);
+            lessonDao.delete(lessonDao.getById(id));
+        } catch (MyServiceException e) {
+            LOGGER.warn("delete lesson failed " + id, e);
+            throw new MyServiceException("delete lesson failed " + id, e);
+        }
     }
 
     @Override
     public void update(Lesson lesson) {
-        lessonDao.save(lesson);
-
+        try {
+            LOGGER.info("update lesson " + lesson.getId());
+            lessonDao.save(lesson);
+        } catch (MyServiceException e) {
+            LOGGER.warn("update lesson failed " + lesson.getId(), e);
+            throw new MyServiceException("update lesson failed " + lesson.getId(), e);
+        }
     }
 
     @Override
     public Lesson findById(Long id) {
-        return lessonDao.getById(id);
+        try {
+            LOGGER.info("findById lesson " + id);
+            return lessonDao.getById(id);
+        } catch (MyServiceException e) {
+            LOGGER.warn("findById lesson failed " + id, e);
+            throw new MyServiceException("findById lesson failed " + id, e);
+        }
     }
 
     @Override
     public List<Lesson> getAll() {
-        return lessonDao.findAll();
+        try {
+            LOGGER.info("getAll lesson ");
+            return lessonDao.findAll();
+        } catch (MyServiceException e) {
+            LOGGER.warn("getAll lesson failed ", e);
+            throw new MyServiceException("getAll lesson failed ", e);
+        }
     }
 
     @Override
     public List<Lesson> findByName(String name) {
-        List<Lesson> lessons = new LinkedList<>();
-        for (Lesson ls : lessonDao.findAll()
-        ) {
-            if (ls.getName().contains(name)) {
-                lessons.add(ls);
+        try {
+            LOGGER.info("findByName lesson: " + name);
+            List<Lesson> lessons = new LinkedList<>();
+            for (Lesson ls : lessonDao.findAll()
+            ) {
+                if (ls.getName().contains(name)) {
+                    lessons.add(ls);
+                }
             }
+            return lessons;
+        } catch (MyServiceException e) {
+            LOGGER.warn("findByName lesson failed " + name, e);
+            throw new MyServiceException("findByName lesson failed " + name, e);
         }
-        return lessons;
     }
 
     @Override
     public List<Lesson> findByDate(LocalDateTime localDateTime) {
-        List<Lesson> lessons = new LinkedList<>();
-        for (Lesson ls : lessonDao.findAll()
-        ) {
-            if (ls.getLocalDateTime().isEqual(localDateTime) && ls.getLocalDateTime().isBefore(localDateTime)) {
-                lessons.add(ls);
+        try {
+            LOGGER.info("findByDate lesson: " + localDateTime);
+            List<Lesson> lessons = new LinkedList<>();
+            for (Lesson ls : lessonDao.findAll()
+            ) {
+                if (ls.getLocalDateTime().isEqual(localDateTime) && ls.getLocalDateTime().isBefore(localDateTime)) {
+                    lessons.add(ls);
+                }
             }
+            return lessons;
+        } catch (MyServiceException e) {
+            LOGGER.warn("findByDate lesson failed " + localDateTime, e);
+            throw new MyServiceException("findByDate lesson failed " + localDateTime, e);
         }
-        return lessons;
     }
 
     @Override
     public List<Lesson> findByStatus(LessonStatus lessonStatus) {
-        List<Lesson> lessons = new LinkedList<>();
-        for (Lesson ls : lessonDao.findAll()
-        ) {
-            if (ls.getLessonStatus() == lessonStatus) {
-                lessons.add(ls);
+        try {
+            LOGGER.info("findByStatus lesson: " + lessonStatus);
+            List<Lesson> lessons = new LinkedList<>();
+            for (Lesson ls : lessonDao.findAll()
+            ) {
+                if (ls.getLessonStatus() == lessonStatus) {
+                    lessons.add(ls);
+                }
             }
+            return lessons;
+        } catch (MyServiceException e) {
+            LOGGER.warn("findByStatus lesson failed " + lessonStatus, e);
+            throw new MyServiceException("findByStatus lesson failed " + lessonStatus, e);
         }
-        return lessons;
     }
 }

@@ -1,9 +1,6 @@
 package by.sacuta.ExchangeService.service.api;
 
-import by.sacuta.ExchangeService.model.dto.CommentDTO;
-import by.sacuta.ExchangeService.model.dto.CourseDTO;
-import by.sacuta.ExchangeService.model.dto.LessonDTO;
-import by.sacuta.ExchangeService.model.dto.ProfileDTO;
+import by.sacuta.ExchangeService.model.dto.*;
 import by.sacuta.ExchangeService.model.model.*;
 
 public interface MyModelMapper {
@@ -22,4 +19,8 @@ public interface MyModelMapper {
     ProfileDTO mapToProfileDTO(Profile profile);
 
    Profile mapToProfile(ProfileDTO profileDTO);
+
+    SectionDTO mapToSectionDTO(Section section);
+
+    Section mapToSection(SectionDTO sectionDTO);
 }
