@@ -1,7 +1,6 @@
 package by.sacuta.ExchangeService.service.api;
 
 import by.sacuta.ExchangeService.model.model.Profile;
-import by.sacuta.ExchangeService.model.model.Role;
 import by.sacuta.ExchangeService.model.model.Course;
 import by.sacuta.ExchangeService.model.model.Lesson;
 import by.sacuta.ExchangeService.model.enums.ProfileStatus;

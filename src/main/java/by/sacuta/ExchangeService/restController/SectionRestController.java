@@ -1,26 +1,23 @@
 package by.sacuta.ExchangeService.restController;
 
 import by.sacuta.ExchangeService.model.dto.CourseDTO;
-import by.sacuta.ExchangeService.model.dto.ProfileDTO;
 import by.sacuta.ExchangeService.model.dto.SectionDTO;
 import by.sacuta.ExchangeService.model.model.Course;
-import by.sacuta.ExchangeService.model.model.Profile;
 import by.sacuta.ExchangeService.model.model.Section;
 import by.sacuta.ExchangeService.service.api.MyModelMapper;
 import by.sacuta.ExchangeService.service.api.SectionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 import java.util.List;
+
 @RestController
 @RequestMapping("rest/section")
 public class SectionRestController {
-  private final   SectionService sectionService;
+
+    private final SectionService sectionService;
     private final MyModelMapper myModelMapper;
 
     public SectionRestController(SectionService sectionService, MyModelMapper myModelMapper) {
@@ -40,8 +37,17 @@ public class SectionRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/get/{id}}")
-    public ResponseEntity<List<CourseDTO>>getCourse(@PathVariable(name = "id") long id) {
+    @GetMapping(value = "/get/{id}")
+    public ResponseEntity<SectionDTO> read(@PathVariable(name = "id") long id) {
+        final SectionDTO sectionDTO = myModelMapper.mapToSectionDTO(sectionService.getById(id));
+        return sectionDTO != null
+                ? new ResponseEntity<>(sectionDTO, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+
+    @GetMapping(value = "/getAllCourse/{id}")
+    public ResponseEntity<List<CourseDTO>> getAllCourse(@PathVariable(name = "id") long id) {
         final List<CourseDTO> courseDTOS = new LinkedList<>();
         for (Course course : sectionService.getAllCourse(sectionService.getById(id))
         ) {
@@ -52,5 +58,40 @@ public class SectionRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @PostMapping(value = "/save")
+    public ResponseEntity<?> create(@RequestBody SectionDTO sectionDTO) {
+        sectionService.save(myModelMapper.mapToSection(sectionDTO));
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody SectionDTO sectionDTO) {
+        boolean update = false;
+        final List<Section> sections = sectionService.getAll();
+        for (Section section : sections) {
+            if (section.getId() == (id)) {
+                section = myModelMapper.mapToSection(sectionDTO);
+                update = true;
+                sectionService.update(section);
+            }
+        }
+        return update
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") long id) {
+        boolean delete = false;
+        final List<Section> sections = sectionService.getAll();
+        for (Section section : sections) {
+            if (section.getId() == (id)) {
+                delete = true;
+                sectionService.delete(id);
+            }
+        }
+        return delete
+                ? new ResponseEntity<>(HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+    }
 }

@@ -1,13 +1,9 @@
 package by.sacuta.ExchangeService.model.model;
 
-import by.sacuta.ExchangeService.model.enums.ProfileStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 @Entity

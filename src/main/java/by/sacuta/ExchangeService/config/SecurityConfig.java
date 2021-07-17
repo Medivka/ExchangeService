@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -32,21 +33,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/registration").permitAll()
                 .antMatchers("/admin").hasAnyRole("ADMIN")
                 .anyRequest()
-//                .permitAll()
                 .authenticated()
                 .and()
                 .httpBasic()
                 .and()
                 .csrf().disable()
                 .formLogin()
-                .disable()
-                  ;
+                .loginPage("/login")
+                .permitAll()
+//                .formLogin()
+//                .disable()
+        ;
     }
 
 
     @Autowired
     public void configure(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.userDetailsService(myCustomUserDetailsService).passwordEncoder(NoOpPasswordEncoder.getInstance() );
+        auth.userDetailsService(myCustomUserDetailsService).passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 }

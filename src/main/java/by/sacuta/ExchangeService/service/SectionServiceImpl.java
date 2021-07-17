@@ -17,7 +17,6 @@ import java.util.List;
 public class SectionServiceImpl implements SectionService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SectionServiceImpl.class);
-
     private final SectionDao sectionDao;
 
     public SectionServiceImpl(SectionDao sectionDao) {

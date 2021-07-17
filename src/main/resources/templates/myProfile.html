@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Experience exchange service</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name="theme-color" content="#7952b3">
+</head>
+<body>
+
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">Hello</h4>
+                    <p class="text-muted">Experience exchange service it's my final test project for Senla. This
+                        project implements CRUD interface, REST and web MVC controllers. </p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">About me</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="" class="text-white">Sacuta Vitalik</a></li>
+                        <li><a href="" class="text-white">Brest, Belarus</a></li>
+                        <li><a href="" class="text-white">tel +375 29 802 01 30</a></li>
+                        <li><a href="" class="text-white">email: Ispolin1@rambler.ru</a></li>
+                        <li><a href="https://github.com/Medivka" class="text-white">GitHub</a></li>
+                        <li><a href="https://t.me/Medivka" class="text-white">telegram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <a>
+            <form th:action="@{/logout}" method="post">
+                <input class="btn btn-outline-primary" type="submit" value="Log out"/>
+            </form>
+        </a>
+        <a href="/myProfile">
+            <button class="btn btn-outline-primary" type="submit">My profile</button>
+        </a>
+    </div>
+</header>
+
+<main>
+
+    <section class="py-5 text-center container">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light"><a href="/section">Experience exchange service</a></h1>
+            <p class="lead text-muted"></p>
+        </div>
+    </section>
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <form action="#" th:action="@{/myProfile}" th:object="${profileDTO}" method="post">
+
+                <label for="id">ID</label>
+                <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+                <div></div>
+                <br/>
+                    <label for="username">username</label>
+                    <input type="text" th:field="*{username}" id="username" placeholder="username">
+                <div></div>
+                <br/>
+                    <label for="password">password</label>
+                    <input type="text" th:field="*{password}" id="password" placeholder="password">
+                <div></div>
+                <br/>
+                    <label for="name">name</label>
+                    <input type="text" th:field="*{name}" id="name" placeholder="name"></td>
+                <div></div>
+                <br/>
+                    <label for="lastname">lastname</label>
+                    <input type="text" th:field="*{lastname}" id="lastname" placeholder="lastname">
+                <div></div>
+                <br/>
+                    <label for="age">age</label>
+                    <input type="text" th:field="*{age}" id="age" placeholder="age">
+                <div></div>
+                <br/>
+                    <label for="email">email</label>
+                    <input type="text" th:field="*{email}" id="email" placeholder="email">
+                <div></div>
+                <br/>
+                    <label for="city">city</label>
+                    <input type="text" th:field="*{city}" id="city" placeholder="city">
+                <div></div>
+                <br/>
+                    <label for="status">status</label>
+                    <select type="text" th:field="*{status}" id="status"/>
+                    <option value="LISTENER">LISTENER</option>
+                    <option value="SPEAKER">SPEAKER</option>
+                    </select>
+                <div></div>
+                <br/>
+
+                    <input type="submit" value="Update profile">
+            </form>
+
+            <div></div>
+            <br/>
+
+            <p>
+                <a href="/section">
+                    <button class="btn btn-outline-primary" type="submit">return main</button>
+                </a>
+            </p>
+        </div>
+    </div>
+    </div>
+</main>
+
+<footer class="text-muted py-5">
+    <div class="container">
+        <p class="float-end mb-1">
+            <a href="#">Back to top</a>
+        </p>
+        <p class="mb-1">All right reserved. Created by Sacuta Vitalik. </p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+<style>
+    table {
+        width: 100%;
+        border: none;
+        margin-bottom: 20px;
+    }
+
+    table thead th {
+        font-weight: bold;
+        text-align: left;
+        border: none;
+        padding: 10px 15px;
+        background: #d8d8d8;
+        font-size: 14px;
+    }
+
+    table thead tr th:first-child {
+        border-radius: 8px 0 0 8px;
+    }
+
+    table thead tr th:last-child {
+        border-radius: 0 8px 8px 0;
+    }
+
+    table tbody td {
+        text-align: left;
+        border: none;
+        padding: 10px 15px;
+        font-size: 14px;
+        vertical-align: top;
+    }
+
+    table tbody tr:nth-child(even) {
+        background: #f3f3f3;
+    }
+
+    table tbody tr td:first-child {
+        border-radius: 8px 0 0 8px;
+    }
+
+    table tbody tr td:last-child {
+        border-radius: 0 8px 8px 0;
+    }
+</style>

@@ -4,7 +4,6 @@ import by.sacuta.ExchangeService.model.enums.CourseStatus;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 @Data
 public class CourseDTO {
@@ -16,11 +15,10 @@ public class CourseDTO {
     private Integer days;
     private SectionDTO section;
     private ProfileDTO speaker;
-
     private CourseStatus courseStatus;
-    private List<LessonDTO> lessons = new LinkedList<>();
-    private List<CommentDTO> comments = new LinkedList<>();
-    private List<ProfileDTO> listeners = new LinkedList<>();
+    private List<LessonDTO> lessons ;
+    private List<CommentDTO> comments;
+    private List<ProfileDTO> listeners ;
     private Integer price;
 
 }

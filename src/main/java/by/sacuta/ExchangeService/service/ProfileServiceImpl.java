@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class ProfileServiceImpl implements ProfileService {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProfileServiceImpl.class);
     private final ProfileDao profileDao;
     private final RoleDao roleDao;
     private final CourseDao courseDao;
@@ -33,9 +33,6 @@ public class ProfileServiceImpl implements ProfileService {
         this.roleDao = roleDao;
         this.courseDao = courseDao;
     }
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProfileServiceImpl.class);
-
 
     @Override
     public Profile findByUsername(String username) {
@@ -136,10 +133,9 @@ public class ProfileServiceImpl implements ProfileService {
             List<Course> myCourses = new LinkedList<>();
             List<Course> allCourses = courseDao.findAll();
             for (Course co : allCourses) {
-                List<Profile> profileList = profileDao.findAll();
+                List<Profile> profileList = co.getListeners();
                 for (Profile cli : profileList) {
                     if (cli.getUsername().equals(username)) {
-                        System.out.println(username);
                         myCourses.add(co);
                     }
                 }

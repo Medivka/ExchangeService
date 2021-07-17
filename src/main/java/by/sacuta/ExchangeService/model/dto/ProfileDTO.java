@@ -15,4 +15,10 @@ public class ProfileDTO {
     private String email;
     private String city;
     private ProfileStatus status;
+
+    @Override
+    public String toString() {
+        return name +
+                " " + lastname ;
+    }
 }

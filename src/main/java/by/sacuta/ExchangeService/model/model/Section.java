@@ -22,5 +22,4 @@ public class Section {
     public Section(String name) {
         this.name = name;
     }
-
 }

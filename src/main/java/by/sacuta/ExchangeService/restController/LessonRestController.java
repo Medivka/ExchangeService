@@ -82,7 +82,6 @@ public class LessonRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-
     @GetMapping(value = "/getLessonAfterDate/{date}")
     public ResponseEntity<List<LessonDTO>> afterDate(@PathVariable(name = "date") LocalDateTime date) {
         final List<LessonDTO> lessons = new LinkedList<>();

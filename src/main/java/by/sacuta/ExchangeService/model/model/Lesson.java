@@ -2,15 +2,13 @@ package by.sacuta.ExchangeService.model.model;
 
 import by.sacuta.ExchangeService.model.enums.LessonStatus;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.LinkedList;
-import java.util.List;
+
 
 @Data
 @Entity
@@ -26,7 +24,6 @@ public class Lesson {
     private String name;
     private LocalDateTime localDateTime;
     private Integer duration;
-
     @Enumerated(EnumType.STRING)
     private LessonStatus lessonStatus;
     private Integer price;

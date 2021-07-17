@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Experience exchange service</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name="theme-color" content="#7952b3">
+</head>
+<body>
+
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">Hello</h4>
+                    <p class="text-muted">Experience exchange service it's my final test project for Senla. This project
+                        implements CRUD interface, REST and web MVC controllers. </p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">About me</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="" class="text-white">Sacuta Vitalik</a></li>
+                        <li><a href="" class="text-white">Brest, Belarus</a></li>
+                        <li><a href="" class="text-white">tel +375 29 802 01 30</a></li>
+                        <li><a href="" class="text-white">email: Ispolin1@rambler.ru</a></li>
+                        <li><a href="https://github.com/Medivka" class="text-white">GitHub</a></li>
+                        <li><a href="https://t.me/Medivka" class="text-white">telegram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <div th:if="${param.error}">
+                    FAIL FAIL FAIL FAIL
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}">
+                    You have been logged out.
+                </div>
+
+                <form th:action="@{/login}" method="post">
+                    <label> username : <input type="text" name="username"/> </label>
+                    <div></div>
+                    <br/>
+                    <label> Password: <input type="password" name="password"/> </label>
+                    <div></div>
+                    <br/>
+                    <input type="submit" class="pressed-button" value="Sign In"/>
+                </form>
+                <div>
+                    <a type="submit" href="/registration" class="pressed-button">registration</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Login</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>admin</td>
+                    <td>admin</td>
+                    <td>admin</td>
+                </tr>
+                <tr>
+                    <td>user</td>
+                    <td>user</td>
+                    <td>user</td>
+                </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+</main>
+
+<footer class="text-muted py-5">
+    <div class="container">
+        <p class="float-end mb-1">
+            <a href="#">Back to top</a>
+        </p>
+        <p class="mb-1">All right reserved. Created by Sacuta Vitalik. </p>
+
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+<style>
+    table {
+        width: 100%;
+        border: none;
+        margin-bottom: 20px;
+    }
+
+    table thead th {
+        font-weight: bold;
+        text-align: center;
+        border: none;
+        padding: 10px 15px;
+        background: #d8d8d8;
+        font-size: 14px;
+    }
+
+    table thead tr th:first-child {
+        border-radius: 8px 0 0 8px;
+    }
+
+    table thead tr th:last-child {
+        border-radius: 0 8px 8px 0;
+    }
+
+    table tbody td {
+        text-align:center;
+        border: none;
+        padding: 10px 15px;
+        font-size: 14px;
+        vertical-align: top;
+    }
+
+    table tbody tr:nth-child(even) {
+        background: #f3f3f3;
+    }
+
+    table tbody tr td:first-child {
+        border-radius: 8px 0 0 8px;
+    }
+
+    table tbody tr td:last-child {
+        border-radius: 0 8px 8px 0;
+    }
+</style>

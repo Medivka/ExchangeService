@@ -25,7 +25,6 @@ public class CourseServiceImpl implements CourseService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CourseServiceImpl.class);
 
-
     private final CourseDao courseDao;
     private final CommentDao commentDao;
     private final LessonDao lessonDao;
@@ -144,18 +143,18 @@ public class CourseServiceImpl implements CourseService {
                 listenerList.add(profileDao.findByUsername(profile.getUsername()));
                 course1.setListeners(listenerList);
                 update(course1);
-                LOGGER.info(String.format("add listener: %s  to course:%s" + profile.getId(), course.getId()));
+                LOGGER.info(String.format("add listener: %s  to course:%s" , profile.getId(), course.getId()));
             }
         } catch (MyServiceException e) {
-            LOGGER.warn(String.format("add listener: %s  to course: %s  Failed" + profile.getId(), course.getId()), e);
-            throw new MyServiceException(String.format("add listener: %s  to course: %s  Failed" + profile.getId(), course.getId()), e);
+            LOGGER.warn(String.format("add listener: %s  to course: %s  Failed", profile.getId(), course.getId()), e);
+            throw new MyServiceException(String.format("add listener: %s  to course: %s  Failed", profile.getId(), course.getId()), e);
         }
     }
 
     @Override
     public void deleteListener(Course course, Profile profile) {
         try {
-            LOGGER.info(String.format("delete listener: %s  to course:%s" + profile.getId(), course.getId()));
+            LOGGER.info(String.format("delete listener: %s  to course:%s", profile.getId(), course.getId()));
             Course course1 = courseDao.getById(course.getId());
             List<Profile> listenerList = course1.getListeners();
             for (int i = 0; i < listenerList.size(); i++) {
@@ -167,8 +166,8 @@ public class CourseServiceImpl implements CourseService {
             course1.setListeners(listenerList);
             update(course1);
         } catch (MyServiceException e) {
-            LOGGER.warn(String.format("delete listener: %s  to course: %s  Failed" + profile.getId(), course.getId()), e);
-            throw new MyServiceException(String.format("delete listener: %s  to course: %s  Failed" + profile.getId(), course.getId()), e);
+            LOGGER.warn(String.format("delete listener: %s  to course: %s  Failed" , profile.getId(), course.getId()), e);
+            throw new MyServiceException(String.format("delete listener: %s  to course: %s  Failed" , profile.getId(), course.getId()), e);
         }
 
     }
@@ -189,13 +188,12 @@ public class CourseServiceImpl implements CourseService {
                 lessonList.add(lessonDao.getById(lesson.getId()));
                 course1.setLessons(lessonList);
                 update(course1);
-                LOGGER.info(String.format("add lesson: %s  to course:%s" + lesson.getId(), course.getId()));
+                LOGGER.info(String.format("add lesson: %s  to course:%s" , lesson.getId(), course.getId()));
             }
         } catch (MyServiceException e) {
-            LOGGER.warn(String.format("add lesson: %s  to course: %s  Failed" + lesson.getId(), course.getId()), e);
-            throw new MyServiceException(String.format("add lesson: %s  to course: %s  Failed" + lesson.getId(), course.getId()), e);
+            LOGGER.warn(String.format("add lesson: %s  to course: %s  Failed" , lesson.getId(), course.getId()), e);
+            throw new MyServiceException(String.format("add lesson: %s  to course: %s  Failed" , lesson.getId(), course.getId()), e);
         }
-
     }
 
     @Override
@@ -204,10 +202,10 @@ public class CourseServiceImpl implements CourseService {
             Course course1 = courseDao.getById(course.getId());
             course1.getComments().add(comment);
             update(course1);
-            LOGGER.info(String.format("add comment: %s  to course:%s" + comment.getId(), course.getId()));
+            LOGGER.info(String.format("add comment: %s  to course:%s" , comment.getId(), course.getId()));
         } catch (MyServiceException e) {
-            LOGGER.warn(String.format("add comment: %s  to course: %s  Failed" + comment.getId(), course.getId()), e);
-            throw new MyServiceException(String.format("add comment: %s  to course: %s  Failed" + comment.getId(), course.getId()), e);
+            LOGGER.warn(String.format("add comment: %s  to course: %s  Failed" , comment.getId(), course.getId()), e);
+            throw new MyServiceException(String.format("add comment: %s  to course: %s  Failed", comment.getId(), course.getId()), e);
         }
     }
 
@@ -251,21 +249,21 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void changeSpeaker(Course course, Profile speaker) {
         try {
-            LOGGER.info(String.format("change speaker: %s  to course:%s" + speaker.getId(), course.getId()));
+            LOGGER.info(String.format("change speaker: %s  to course:%s" , speaker.getId(), course.getId()));
             if (speaker.getStatus().equals(ProfileStatus.SPEAKER)) {
                 course.setSpeaker(speaker);
                 courseDao.save(course);
             }
         } catch (MyServiceException e) {
-            LOGGER.warn(String.format("change speaker: %s  to course:%s  failed" + speaker.getId(), course.getId()), e);
-            throw new MyServiceException(String.format("change speaker: %s  to course:%s  failed" + speaker.getId(), course.getId()), e);
+            LOGGER.warn(String.format("change speaker: %s  to course:%s  failed" , speaker.getId(), course.getId()), e);
+            throw new MyServiceException(String.format("change speaker: %s  to course:%s  failed", speaker.getId(), course.getId()), e);
         }
     }
 
     @Override
     public List<Course> findByName(String name) {
         try {
-            LOGGER.info(String.format("find by name: %s   " + name));
+            LOGGER.info(String.format("find by name: %s   " , name));
             List<Course> coursesStatus = new LinkedList<>();
             List<Course> courses = courseDao.findAll();
             for (Course co :
@@ -276,8 +274,8 @@ public class CourseServiceImpl implements CourseService {
             }
             return coursesStatus.stream().sorted((o1, o2) -> o1.getStartCourse().compareTo(o2.getStartCourse())).collect(Collectors.toList());
         } catch (MyServiceException e) {
-            LOGGER.warn(String.format("find by name: %s   failed" + name), e);
-            throw new MyServiceException(String.format("find by name: %s   failed" + name), e);
+            LOGGER.warn(String.format("find by name: %s   failed" , name), e);
+            throw new MyServiceException(String.format("find by name: %s   failed" , name), e);
         }
     }
 }

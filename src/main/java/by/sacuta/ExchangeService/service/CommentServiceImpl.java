@@ -3,7 +3,6 @@ package by.sacuta.ExchangeService.service;
 import by.sacuta.ExchangeService.dao.CommentDao;
 import by.sacuta.ExchangeService.exception.MyServiceException;
 import by.sacuta.ExchangeService.model.model.Profile;
-import by.sacuta.ExchangeService.model.model.Role;
 import by.sacuta.ExchangeService.model.model.Comment;
 import by.sacuta.ExchangeService.service.api.CommentService;
 import org.slf4j.Logger;
