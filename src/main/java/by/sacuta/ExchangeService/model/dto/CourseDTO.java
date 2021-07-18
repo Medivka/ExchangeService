@@ -21,4 +21,9 @@ public class CourseDTO {
     private List<ProfileDTO> listeners ;
     private Integer price;
 
+    @Override
+    public String toString() {
+        return
+                 name ;
+    }
 }

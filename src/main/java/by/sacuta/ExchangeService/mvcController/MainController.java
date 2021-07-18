@@ -1,4 +1,4 @@
-package by.sacuta.ExchangeService.MvcController;
+package by.sacuta.ExchangeService.mvcController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

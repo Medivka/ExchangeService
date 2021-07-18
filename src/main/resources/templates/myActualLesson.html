@@ -62,7 +62,7 @@
 
     <section class="py-5 text-center container">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light"><a href="/section" >Experience exchange service</a></h1>
+            <h1 class="fw-light"><a href="/section">Experience exchange service</a></h1>
             <p class="lead text-muted"></p>
         </div>
     </section>
@@ -76,6 +76,7 @@
                         <thead>
                         <tr>
                             <th>name</th>
+                            <th>Course</th>
                             <th>local Date Time</th>
                             <th>duration</th>
                             <th>lesson Status</th>
@@ -86,6 +87,7 @@
                         <tbody>
                         <tr th:each="lessonsDTO : ${lessonsDTOs}">
                             <td th:text="${lessonsDTO.name}"></td>
+                            <td th:text="${lessonsDTO.course}"></td>
                             <td th:text="${lessonsDTO.localDateTime}"></td>
                             <td th:text="${lessonsDTO.duration}"></td>
                             <td th:text="${lessonsDTO.lessonStatus}"></td>

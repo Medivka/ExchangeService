@@ -1,4 +1,4 @@
-package by.sacuta.ExchangeService.MvcController;
+package by.sacuta.ExchangeService.mvcController;
 
 import by.sacuta.ExchangeService.config.MyCustomUserDetailsService;
 import by.sacuta.ExchangeService.model.dto.ProfileDTO;
