@@ -3,6 +3,7 @@ package by.sacuta.ExchangeService.model.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -13,6 +14,7 @@ import java.util.List;
 @Table(name = "comment")
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +32,11 @@ public class Comment {
         this.message = message;
         this.profile=profile;
     }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     @Override
     public String toString() {
         return " " + message;
