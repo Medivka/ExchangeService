@@ -85,6 +85,7 @@
                             <th>courseStatus</th>
                             <th>price</th>
                             <th>show</th>
+                            <th>delete</th>
 
                         </tr>
                         </thead>
@@ -101,6 +102,8 @@
                             <td><a class="btn btn-outline-primary"
                                    th:href="@{/lessonList/{id}(id=${courseDTO.id})}">show</a>
                             </td>
+                            </td> <td><a class="btn btn-outline-primary" th:href="@{courseDelete/{id}(id=${courseDTO.id})}">delete </a>
+                        </td>
 
 
                         </tr>
