@@ -1,0 +1,1 @@
+cd ExchangeService mvn spring-boot:run
