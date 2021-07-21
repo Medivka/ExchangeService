@@ -5,6 +5,7 @@
 
     <property name="LOG_FILE_INFO" value="${LOG_FILE_INFO:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}/info.log}"/>
     <property name="LOG_FILE_ERROR" value="${LOG_FILE_ERROR:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}/error.log}"/>
+    <property name="LOG_FILE_DEBUG" value="${LOG_FILE_DEBUG:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}/debug.log}"/>
 
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
 
@@ -38,14 +39,29 @@
         </encoder>
     </appender>
 
+ <appender name="LOG_DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE_DEBUG}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSSS}|%-5level|%msg%n</pattern>
+        </encoder>
+    </appender>
+
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
     </root>
 
-    <logger name="by.sacuta.exchangeService" additivity="false" level="ALL">
+    <logger name="by.sacuta.exchange" additivity="false" level="ALL">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="LOG_INFO"/>
         <appender-ref ref="LOG_ERROR"/>
+        <appender-ref ref="LOG_DEBUG"/>
     </logger>
 
 </configuration>

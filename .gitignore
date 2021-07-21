@@ -2,13 +2,14 @@
 *.class
 HELP.md
 target/
-!.mvn/wrapper/maven-wrapper.jar
+
 !**/src/main/**/target/
 !**/src/test/**/target/
 # Log file
 *.log
 # BlueJ files
 *.ctxt
+*.mvnw
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -25,6 +26,8 @@ target/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 #idea
+mvnw.cmd
+.mvn
 .iml
 .idea
 *.iml
