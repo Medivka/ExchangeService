@@ -1,2 +1,1 @@
-mvn clean package -Dmaven.test.skip=true
-mvn spring-boot:run
+java -jar target\ExchangeService-0.0.1-SNAPSHOT.jar
