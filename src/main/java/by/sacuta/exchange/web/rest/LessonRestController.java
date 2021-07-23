@@ -5,6 +5,8 @@ import by.sacuta.exchange.domain.enums.LessonStatus;
 import by.sacuta.exchange.domain.model.Lesson;
 import by.sacuta.exchange.service.LessonService;
 import by.sacuta.exchange.service.MyModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("rest/lesson")
 public class LessonRestController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(LessonRestController.class);
 
     private final MyModelMapper myModelMapper;
     private final LessonService lessonService;
@@ -28,6 +31,8 @@ public class LessonRestController {
 
     @GetMapping(value = "/get/all")
     public ResponseEntity<List<LessonDTO>> getAll() {
+        LOGGER.info("rest/lesson/get/all ");
+
         final List<LessonDTO> lessonDTOList = new LinkedList<>();
         for (Lesson l : lessonService.getAll()
         ) {
@@ -40,6 +45,8 @@ public class LessonRestController {
 
     @GetMapping(value = "/get/{id}")
     public ResponseEntity<LessonDTO> getById(@PathVariable(name = "id") long id) {
+        LOGGER.info(String.format( "rest/lesson/get/{%s} ",id));
+
         final LessonDTO lessonDTO = myModelMapper.mapToLessonDTO(lessonService.findById(id));
         return lessonDTO != null
                 ? new ResponseEntity<>(lessonDTO, HttpStatus.OK)
@@ -48,6 +55,8 @@ public class LessonRestController {
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") long id) {
+        LOGGER.info(String.format( "rest/lesson/delete/{%s} ",id));
+
         boolean delete = false;
         final List<Lesson> lessons = lessonService.getAll();
         for (Lesson l : lessons) {
@@ -63,12 +72,14 @@ public class LessonRestController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<?> save(@RequestBody LessonDTO lessonDTO) {
+        LOGGER.info(String.format( "rest/lesson/save/{%s} ",lessonDTO.getName()));
         lessonService.save(myModelMapper.mapToLesson(lessonDTO));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody LessonDTO lessonDTO) {
+        LOGGER.info(String.format( "rest/lesson/update/{%s} ",id));
         boolean update = false;
         final List<Lesson> lessons = lessonService.getAll();
         for (Lesson l : lessons) {
@@ -85,6 +96,7 @@ public class LessonRestController {
 
     @GetMapping(value = "/getLessonAfterDate/{date}")
     public ResponseEntity<List<LessonDTO>> afterDate(@PathVariable(name = "date")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
+        LOGGER.info(String.format( "rest/lesson/getLessonAfterDate/{%s} ",date));
         final List<LessonDTO> lessons = new LinkedList<>();
         for (Lesson l : lessonService.findByDate(date)
         ) {
@@ -97,6 +109,7 @@ public class LessonRestController {
 
     @GetMapping(value = "/findByName/{name}")
     public ResponseEntity<List<LessonDTO>> findByName(@PathVariable(name = "name") String name) {
+        LOGGER.info(String.format( "rest/lesson/findByName/{%s} ",name));
         final List<LessonDTO> lessons = new LinkedList<>();
         for (Lesson l : lessonService.findByName(name)
         ) {
@@ -109,6 +122,8 @@ public class LessonRestController {
 
     @GetMapping(value = "/findByStatus/{status}")
     public ResponseEntity<List<LessonDTO>> findByStatus(@PathVariable(name = "status") int status) {
+        LOGGER.info(String.format( "rest/lesson/findByStatus/{%s} ",status));
+
         final List<LessonDTO> lessons = new LinkedList<>();
         LessonStatus lessonStatus = LessonStatus.GROUP;
         switch (status) {

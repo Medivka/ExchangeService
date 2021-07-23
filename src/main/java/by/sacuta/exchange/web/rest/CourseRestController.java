@@ -6,6 +6,8 @@ import by.sacuta.exchange.dto.CourseDTO;
 import by.sacuta.exchange.domain.enums.CourseStatus;
 import by.sacuta.exchange.domain.model.Course;
 import by.sacuta.exchange.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("rest/course")
 public class CourseRestController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CourseRestController.class);
 
     private final MyModelMapper myModelMapper;
     private final CourseService courseService;
@@ -34,6 +37,7 @@ public class CourseRestController {
 
     @GetMapping(value = "/get/all")
     public ResponseEntity<List<CourseDTO>> getAll() {
+        LOGGER.info("rest/course/get/all ");
         final List<CourseDTO> courseDTOList = new LinkedList<>();
         for (Course c : courseService.getAll()
         ) {
@@ -46,6 +50,7 @@ public class CourseRestController {
 
     @GetMapping(value = "/get/{id}")
     public ResponseEntity<CourseDTO> getById(@PathVariable(name = "id") long id) {
+        LOGGER.info(String.format( "rest/course/get/{%s} ",id));
         final CourseDTO courseDTO = myModelMapper.mapToCourseDTO(courseService.findById(id));
         return courseDTO != null
                 ? new ResponseEntity<>(courseDTO, HttpStatus.OK)
@@ -54,6 +59,7 @@ public class CourseRestController {
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<?> deleteById(@PathVariable(name = "id") long id) {
+        LOGGER.info(String.format( "rest/course/delete/{%s} ",id));
         boolean delete = false;
         final List<Course> courses = courseService.getAll();
         for (Course c : courses) {
@@ -69,12 +75,15 @@ public class CourseRestController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<?> save(@RequestBody CourseDTO courseDTO) {
+        LOGGER.info(String.format( "rest/course/save {%s} ",courseDTO.getName()));
         courseService.save(myModelMapper.mapToCourse(courseDTO));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody CourseDTO courseDTO) {
+        LOGGER.info(String.format( "rest/course/update/{%s} ",id));
+
         boolean update = false;
         final List<Course> courses = courseService.getAll();
         for (Course c : courses) {
@@ -108,6 +117,7 @@ public class CourseRestController {
 
     @GetMapping(value = "/getCourseStatus/{id}")
     public ResponseEntity<List<CourseDTO>> getByStatus(@PathVariable(name = "id") int id) {
+        LOGGER.info(String.format( "rest/course/getCourseStatus/{%s} ",id));
         final List<CourseDTO> courseDTOS = new LinkedList<>();
         CourseStatus courseStatus=CourseStatus.OPEN;
         switch (id){
@@ -128,6 +138,7 @@ public class CourseRestController {
 
     @GetMapping(value = "/getByName/{name}")
     public ResponseEntity<List<CourseDTO>> getByName(@PathVariable(name = "name") String name) {
+        LOGGER.info(String.format( "rest/course/getByName/{%s} ",name));
         final List<CourseDTO> courses = new LinkedList<>();
         for (Course c : courseService.getAll()
         ) {
@@ -140,6 +151,7 @@ public class CourseRestController {
     }
     @GetMapping(value = "/getcoursecomment/{id}")
     public ResponseEntity<List<CommentDTO>> getCourseComment(@PathVariable(name = "id") long    id) {
+        LOGGER.info(String.format( "rest/course/getcoursecomment/{%s} ",id));
         List<CommentDTO>comments = new LinkedList<>();
         for (Comment c: courseService.findById(id).getComments()
              ) {comments.add(myModelMapper.mapToCommentDTO(c));

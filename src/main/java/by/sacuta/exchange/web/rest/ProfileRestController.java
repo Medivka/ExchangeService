@@ -8,6 +8,8 @@ import by.sacuta.exchange.domain.model.Course;
 import by.sacuta.exchange.domain.model.Lesson;
 import by.sacuta.exchange.service.MyModelMapper;
 import by.sacuta.exchange.service.ProfileService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("rest/profile")
 public class ProfileRestController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProfileRestController.class);
 
     private final ProfileService profileService;
     private final MyModelMapper myModelMapper;
@@ -30,7 +33,7 @@ public class ProfileRestController {
 
     @GetMapping(value = "/get/all")
     public ResponseEntity<List<ProfileDTO>> read() {
-
+        LOGGER.info("rest/profile/get/all ");
         final List<ProfileDTO> profileDTOS = new LinkedList<>();
         for (Profile profile : profileService.getAll()
         ) {
@@ -43,6 +46,7 @@ public class ProfileRestController {
 
     @GetMapping(value = "/get/{id}")
     public ResponseEntity<ProfileDTO> read(@PathVariable(name = "id") long id) {
+        LOGGER.info(String.format( "rest/profile/get/{%s} ",id));
         final ProfileDTO clientDTO = myModelMapper.mapToProfileDTO(profileService.findByID(id));
         return clientDTO != null
                 ? new ResponseEntity<>(clientDTO, HttpStatus.OK)
@@ -51,6 +55,7 @@ public class ProfileRestController {
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") long id) {
+        LOGGER.info(String.format( "rest/profile/delete/{%s} ",id));
         boolean delete = false;
         final List<Profile> clients = profileService.getAll();
         for (Profile clients1 : clients) {
@@ -66,12 +71,14 @@ public class ProfileRestController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<?> create(@RequestBody ProfileDTO profileDTO) {
+        LOGGER.info(String.format( "rest/profile/save/{%s} ",profileDTO.getUsername()));
         profileService.save(myModelMapper.mapToProfile(profileDTO));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/update/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody ProfileDTO profileDTO) {
+        LOGGER.info(String.format( "rest/profile/update/{%s} ",id));
         boolean update = false;
         final List<Profile> profiles = profileService.getAll();
         for (Profile profile : profiles) {
@@ -88,6 +95,7 @@ public class ProfileRestController {
 
     @GetMapping(value = "/get/getAllMyCourse/{id}")
     public ResponseEntity<List<CourseDTO>> getAllMyCourse(@PathVariable(name = "id") long id) {
+        LOGGER.info(String.format( "rest/profile/getAllMyCourse/{%s} ",id));
         final List<CourseDTO> courseDTOS = new LinkedList<>();
         for (Course course : profileService.getAllMyCourse(profileService.findByID(id).getUsername())
         ) {
@@ -100,6 +108,7 @@ public class ProfileRestController {
 
     @GetMapping(value = "/get/getActualLesson/{id}")
     public ResponseEntity<List<LessonDTO>> getActualLesson(@PathVariable(name = "id") long id) {
+        LOGGER.info(String.format( "rest/profile/getActualLesson/{%s} ",id));
         final List<LessonDTO> lessonDTOS = new LinkedList<>();
         for (Lesson lesson : profileService.getActualLesson(profileService.findByID(id).getUsername())
         ) {
