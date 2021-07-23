@@ -1,5 +1,7 @@
 package by.sacuta.exchange.web.rest;
 
+import by.sacuta.exchange.domain.model.Comment;
+import by.sacuta.exchange.dto.CommentDTO;
 import by.sacuta.exchange.dto.CourseDTO;
 import by.sacuta.exchange.domain.enums.CourseStatus;
 import by.sacuta.exchange.domain.model.Course;
@@ -134,6 +136,17 @@ public class CourseRestController {
         }
         return courses != null && !courses.isEmpty()
                 ? new ResponseEntity<>(courses, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    @GetMapping(value = "/getcoursecomment/{id}")
+    public ResponseEntity<List<CommentDTO>> getCourseComment(@PathVariable(name = "id") long    id) {
+        List<CommentDTO>comments = new LinkedList<>();
+        for (Comment c: courseService.findById(id).getComments()
+             ) {comments.add(myModelMapper.mapToCommentDTO(c));
+
+        }
+        return comments != null && !comments.isEmpty()
+                ? new ResponseEntity<>(comments, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

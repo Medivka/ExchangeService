@@ -67,7 +67,7 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public void save(Profile profile) {
         try {
-            if (existsByUsername(profile.getUsername())) {
+            if (!existsByUsername(profile.getUsername())) {
                 profileDao.save(profile);
                 LOGGER.info("save profile  " + profile.getId());
             }

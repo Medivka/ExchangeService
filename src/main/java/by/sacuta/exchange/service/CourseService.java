@@ -25,6 +25,8 @@ public interface CourseService {
 
     void deleteListener(Course course, Profile profile);
 
+    boolean existByLessonName(Course course, Lesson lesson);
+
     void addLesson(Course course, Lesson lesson);
 
     void addComment(Course course, Comment comment);

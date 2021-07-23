@@ -25,9 +25,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void createNewComment(String massage, Profile profile) {
+    public void createNewComment(String message, Profile profile) {
         try {
-            commentDao.save(new Comment(massage, profile));
+            commentDao.save(new Comment(message, profile));
             LOGGER.info("create new comment");
         } catch (MyServiceException e) {
             LOGGER.warn("create new Comment failed ", e);

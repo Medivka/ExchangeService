@@ -21,7 +21,7 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <encoder>
-            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSSS}|%-5level|%msg%n</pattern>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSSS}  | %-5level | %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -49,7 +49,7 @@
             <level>DEBUG</level>
         </filter>
         <encoder>
-            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSSS}|%-5level|%msg%n</pattern>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSSS} | %-5level|%msg%n</pattern>
         </encoder>
     </appender>
 
