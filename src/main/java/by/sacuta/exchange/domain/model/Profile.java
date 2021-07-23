@@ -3,10 +3,13 @@ package by.sacuta.exchange.domain.model;
 import by.sacuta.exchange.domain.enums.ProfileStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,8 +26,13 @@ public  class Profile implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotEmpty(message = "not be empty")
     @Column(name="username")
+    @Size(min = 2,max = 15,message = "invalid username")
+    @NotEmpty(message = "not be empty")
     private String username;
+    @NotEmpty(message = "not be empty")
+    @Size(min = 2,max = 15,message = "invalid password")
     private String password;
     private String name;
     private String lastname;

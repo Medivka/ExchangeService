@@ -9,8 +9,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.LinkedList;
 import java.util.List;
@@ -36,7 +38,6 @@ public class RegistrationController {
 
     @GetMapping("/login")
     public String findAll(Model model) {
-
         List<ProfileDTO> profileDTOS = new LinkedList<>();
         for (Profile cl : profileService.getAll()
         ) {
@@ -48,14 +49,15 @@ public class RegistrationController {
 
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("userForm") ProfileDTO profileDTO) {
-        myCustomUserDetailsService.saveUser(myModelMapper.mapToProfile(profileDTO));
+    public String addUser(@ModelAttribute("userForm") @Valid Profile profile, BindingResult bindingResult) {
+        if(bindingResult.hasErrors())
+            return "/registration";
+        myCustomUserDetailsService.saveUser(profile);
         return "redirect:/main";
     }
 
 
-    @RequestMapping(value = "/myusername", method = RequestMethod.GET)
-    @ResponseBody
+    @GetMapping("/myusername")
     public User getCurrentUser(Principal principal) {
         return ((User) SecurityContextHolder.getContext()
                 .getAuthentication()

@@ -67,7 +67,11 @@
 			<version>2.4.2</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.1.6.Final</version>
+		</dependency>
 
 <!--		<dependency>-->
 <!--			<groupId>org.codehaus.mojo</groupId>-->
