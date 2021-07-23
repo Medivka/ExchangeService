@@ -5,6 +5,7 @@ import by.sacuta.exchange.domain.enums.LessonStatus;
 import by.sacuta.exchange.domain.model.Lesson;
 import by.sacuta.exchange.service.LessonService;
 import by.sacuta.exchange.service.MyModelMapper;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -83,7 +84,7 @@ public class LessonRestController {
     }
 
     @GetMapping(value = "/getLessonAfterDate/{date}")
-    public ResponseEntity<List<LessonDTO>> afterDate(@PathVariable(name = "date") LocalDateTime date) {
+    public ResponseEntity<List<LessonDTO>> afterDate(@PathVariable(name = "date")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
         final List<LessonDTO> lessons = new LinkedList<>();
         for (Lesson l : lessonService.findByDate(date)
         ) {

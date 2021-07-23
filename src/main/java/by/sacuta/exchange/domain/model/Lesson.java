@@ -3,6 +3,7 @@ package by.sacuta.exchange.domain.model;
 import by.sacuta.exchange.domain.enums.LessonStatus;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,10 +34,10 @@ public class Lesson {
 
     public Lesson(String name,Course course, LocalDateTime localDateTime, Integer duration, LessonStatus lessonStatus, Integer price) {
         this.name = name;
-        this.course=course;
         this.localDateTime = localDateTime;
         this.duration = duration;
         this.lessonStatus = lessonStatus;
         this.price = price;
+        this.course=course;
     }
 }

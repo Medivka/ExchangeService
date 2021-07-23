@@ -115,10 +115,10 @@ public class LessonServiceImpl implements LessonService {
         try {
             LOGGER.info("findByDate lesson: " + localDateTime);
             List<Lesson> lessons = new LinkedList<>();
-            for (Lesson ls : lessonDao.findAll()
+            for (Lesson lesson : lessonDao.findAll()
             ) {
-                if (ls.getLocalDateTime().isEqual(localDateTime) && ls.getLocalDateTime().isBefore(localDateTime)) {
-                    lessons.add(ls);
+                if ((lesson.getLocalDateTime().isEqual(localDateTime)) || (lesson.getLocalDateTime().isAfter(localDateTime))) {
+                    lessons.add(lesson);
                 }
             }
             return lessons;

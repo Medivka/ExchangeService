@@ -187,15 +187,10 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void addLesson(Course course, Lesson lesson) {
         try {
-            Course course1 = courseDao.getById(course.getId());
-            List<Lesson> lessonList = course1.getLessons();
-            if (!existByLessonName(course, lesson)) {
-                lessonList.add(lessonDao.getById(lesson.getId()));
-                course1.setLessons(lessonList);
-                update(course1);
-                LOGGER.info(String.format("add lesson: %s  to course:%s", lesson.getId(), course.getId()));
-            }
-        } catch (MyServiceException e) {
+            lesson.setCourse(course);
+
+            LOGGER.info(String.format("add lesson: %s  to course:%s", lesson.getId(), course.getId()));
+                 } catch (MyServiceException e) {
             LOGGER.warn(String.format("add lesson: %s  to course: %s  Failed", lesson.getId(), course.getId()), e);
             throw new MyServiceException(String.format("add lesson: %s  to course: %s  Failed", lesson.getId(), course.getId()), e);
         }

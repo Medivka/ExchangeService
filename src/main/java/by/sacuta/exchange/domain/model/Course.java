@@ -42,6 +42,7 @@ public class Course {
     @Enumerated(EnumType.STRING)
     private CourseStatus courseStatus;
     @OneToMany(mappedBy = "course", orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Lesson> lessons = new LinkedList<>();
     @ManyToMany(fetch = FetchType.LAZY
             , cascade = {
@@ -55,9 +56,14 @@ public class Course {
     @ManyToMany(fetch = FetchType.LAZY
 //            , cascade = CascadeType.MERGE
     )
+
     @JoinTable(name = "course_profile",
             joinColumns = @JoinColumn(name = "id_course"),
             inverseJoinColumns = @JoinColumn(name = "id_profile"))
     private List<Profile> listeners = new LinkedList<>();
     private Integer price;
+
+
+
+
 }
