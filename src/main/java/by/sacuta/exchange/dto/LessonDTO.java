@@ -10,6 +10,7 @@ public class LessonDTO {
 
     private Long id;
     private String name;
+    private CourseDTO course;
     private LocalDateTime localDateTime;
     private Integer duration;
     private LessonStatus lessonStatus;
