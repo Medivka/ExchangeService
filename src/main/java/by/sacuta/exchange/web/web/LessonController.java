@@ -30,9 +30,13 @@ public class LessonController {
 
     @PostMapping("/lesson-update")
     public String updateLessonsDTO(LessonDTO lessonDTO) {
-        Lesson lesson = lessonService.findById(lessonDTO.getId());
-        lesson = myModelMapper.mapToLesson(lessonDTO);
-        lessonService.update(lesson);
+         lessonService.update(myModelMapper.mapToLesson(lessonDTO));
         return "redirect:/section";
     }
+    @GetMapping("/lessonList/lesson-delete/{id}")
+    public String deleteLessonDTO(@PathVariable("id") Long id) {
+      lessonService.delete(id);
+        return "redirect:/section";
+    }
+
 }
