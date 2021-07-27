@@ -33,4 +33,6 @@ public interface ProfileService {
     List<Lesson> getActualLesson(String username);
 
     List<Profile> getAllSpeaker();
+
+    void getRoleAdmin(Profile profile);
 }

@@ -1,7 +1,10 @@
 package by.sacuta.exchange.dto;
 
 import by.sacuta.exchange.domain.enums.ProfileStatus;
+import by.sacuta.exchange.domain.model.Role;
 import lombok.Data;
+
+import java.util.Set;
 
 @Data
 public class ProfileDTO {
@@ -15,7 +18,7 @@ public class ProfileDTO {
     private String email;
     private String city;
     private ProfileStatus status;
-
+  
     @Override
     public String toString() {
         return name +

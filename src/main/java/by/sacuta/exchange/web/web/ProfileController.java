@@ -99,4 +99,9 @@ public class ProfileController {
         profileService.delete(id);
         return "redirect:/admin";
     }
+    @GetMapping("getAdmin/{id}")
+    public String getRoleAdmin(@PathVariable("id") Long id){
+        profileService.getRoleAdmin(profileService.findByID(id));
+        return "redirect:/admin";
+    }
 }

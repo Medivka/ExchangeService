@@ -12,8 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -43,7 +42,8 @@ public class MyCustomUserDetailsService implements UserDetailsService {
             }
         }
         if (b) {
-            List<Role> roles = new LinkedList<>();
+            Set<Role> roles = new HashSet<>() {
+            };
             roles.add(roleDao.getById(1L));
             profile.setRoles(roles);
             profile.setPassword((profile.getPassword()));

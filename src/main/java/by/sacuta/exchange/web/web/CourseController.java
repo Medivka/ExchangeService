@@ -51,7 +51,7 @@ public class CourseController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         courseService.addListener(courseService.findById(id), profileService.findByUsername(username));
-        return "redirect:/myCourse";
+        return "redirect:/allCourses";
     }
 
     @GetMapping("/courseList/courseAdd/{id}")
@@ -59,7 +59,7 @@ public class CourseController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         courseService.addListener(courseService.findById(id), profileService.findByUsername(username));
-        return "redirect:/myCourse";
+        return "redirect:/allCourses";
     }
 
     @GetMapping("/courseDelete/{id}")
@@ -67,7 +67,7 @@ public class CourseController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         courseService.deleteListener(courseService.findById(id), profileService.findByUsername(username));
-        return "redirect:/myCourse";
+        return "redirect:/allCourses";
     }
 
     @GetMapping("/courseList/courseDelete/{id}")
@@ -75,7 +75,7 @@ public class CourseController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
         courseService.deleteListener(courseService.findById(id), profileService.findByUsername(username));
-        return "redirect:/myCourse";
+        return "redirect:/allCourses";
     }
 
     @GetMapping("/lessonList/{id}")

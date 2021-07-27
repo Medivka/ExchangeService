@@ -76,7 +76,6 @@
                         <thead>
                         <tr>
                             <th>name</th>
-                            <th>Course</th>
                             <th>local Date Time</th>
                             <th>duration</th>
                             <th>lesson Status</th>
@@ -87,7 +86,6 @@
                         <tbody>
                         <tr th:each="lessonsDTO : ${lessonsDTOs}">
                             <td th:text="${lessonsDTO.name}"></td>
-                            <td th:text="${lessonsDTO.course}"></td>
                             <td th:text="${lessonsDTO.localDateTime}"></td>
                             <td th:text="${lessonsDTO.duration}"></td>
                             <td th:text="${lessonsDTO.lessonStatus}"></td>

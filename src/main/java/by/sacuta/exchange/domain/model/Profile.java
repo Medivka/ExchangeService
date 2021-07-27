@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -45,7 +46,7 @@ public  class Profile implements UserDetails {
     @JoinTable(name = "profile_role",
             joinColumns = {@JoinColumn(name = "client_id")},
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    private Set<Role> roles;
     @OneToMany(mappedBy = "speaker", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Course> courseList = new LinkedList<>();
     @JsonIgnore

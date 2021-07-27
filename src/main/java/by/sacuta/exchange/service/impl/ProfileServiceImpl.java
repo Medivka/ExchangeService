@@ -181,4 +181,8 @@ public class ProfileServiceImpl implements ProfileService {
             throw new MyServiceException("getAllSpeaker  failed", e);
         }
     }
+    @Override
+    public void getRoleAdmin(Profile profile){
+        profile.getRoles().add(roleDao.getById(2l));
+    }
 }
