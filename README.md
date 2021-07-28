@@ -4,6 +4,8 @@ Spring boot project.
 
 This is the final project in the training from Senla.
 
+You may test my application on link https://sacuta.herokuapp.com/
+
 You must install maven and MySQL
 
 1 step.

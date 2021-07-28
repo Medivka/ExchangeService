@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -103,7 +104,7 @@ public class LessonServiceImpl implements LessonService {
                     lessons.add(ls);
                 }
             }
-            return lessons;
+            return lessons.stream().sorted((o1, o2) -> o1.getLocalDateTime().compareTo(o2.getLocalDateTime())).collect(Collectors.toList());
         } catch (MyServiceException e) {
             LOGGER.warn("findByName lesson failed " + name, e);
             throw new MyServiceException("findByName lesson failed " + name, e);
@@ -121,7 +122,7 @@ public class LessonServiceImpl implements LessonService {
                     lessons.add(lesson);
                 }
             }
-            return lessons;
+            return lessons.stream().sorted((o1, o2) -> o1.getLocalDateTime().compareTo(o2.getLocalDateTime())).collect(Collectors.toList());
         } catch (MyServiceException e) {
             LOGGER.warn("findByDate lesson failed " + localDateTime, e);
             throw new MyServiceException("findByDate lesson failed " + localDateTime, e);
@@ -139,7 +140,7 @@ public class LessonServiceImpl implements LessonService {
                     lessons.add(ls);
                 }
             }
-            return lessons;
+            return lessons.stream().sorted((o1, o2) -> o1.getLocalDateTime().compareTo(o2.getLocalDateTime())).collect(Collectors.toList());
         } catch (MyServiceException e) {
             LOGGER.warn("findByStatus lesson failed " + lessonStatus, e);
             throw new MyServiceException("findByStatus lesson failed " + lessonStatus, e);
