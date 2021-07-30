@@ -8,25 +8,42 @@ import by.sacuta.exchange.domain.model.Lesson;
 import by.sacuta.exchange.domain.model.Profile;
 import by.sacuta.exchange.service.MyModelMapper;
 import by.sacuta.exchange.service.ProfileService;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedList;
 import java.util.List;
 
 @Controller
 public class ProfileController {
+
+    private final JavaMailSender javaMailSender;
     private final MyModelMapper myModelMapper;
     private final ProfileService profileService;
 
-    public ProfileController(MyModelMapper myModelMapper, ProfileService clientsFacade) {
+    public ProfileController(JavaMailSender javaMailSender, MyModelMapper myModelMapper, ProfileService profileService) {
+        this.javaMailSender = javaMailSender;
         this.myModelMapper = myModelMapper;
-        this.profileService = clientsFacade;
+        this.profileService = profileService;
+    }
+
+
+    @GetMapping("/sendSimpleEmail/{id}")
+    public String sendSimpleEmail(@PathVariable("id") Long id) {
+        Profile profile= profileService.findByID(id);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(profile.getEmail());
+        message.setSubject("Test simple email by sacuta project");
+        message.setText("Hello "+profile.getName()+", It's My test project for Senla.\n"
+                +"you username: "+profile.getUsername()+"\n"
+                +"you password: "+ profile.getPassword());
+        this.javaMailSender.send(message);
+        return "mailSent";
     }
 
     @GetMapping("/myProfile")
@@ -104,4 +121,5 @@ public class ProfileController {
         profileService.getRoleAdmin(profileService.findByID(id));
         return "redirect:/admin";
     }
+
 }

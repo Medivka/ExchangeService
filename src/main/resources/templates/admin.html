@@ -87,6 +87,7 @@
                             <th>edit</th>
                             <th>delete</th>
                             <th>get role admin</th>
+                            <th>sent email</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -106,6 +107,8 @@
                             <td><a class="btn btn-outline-primary" th:href="@{client-delete/{id}(id=${profileDTO.id})}">delete</a>
                             </td>
                             <td><a class="btn btn-outline-primary" th:href="@{getAdmin/{id}(id=${profileDTO.id})}">get Admin</a>
+                            </td>
+                            <td><a class="btn btn-outline-primary" th:href="@{sendSimpleEmail/{id}(id=${profileDTO.id})}">sent email</a>
                             </td>
                         </tr>
                         </tbody>

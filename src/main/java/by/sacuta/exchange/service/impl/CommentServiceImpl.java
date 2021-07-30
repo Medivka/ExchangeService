@@ -73,7 +73,7 @@ public class CommentServiceImpl implements CommentService {
     public void update(Comment comment) {
         try {
             LOGGER.info("update comment: " + comment.getId());
-            commentDao.save(comment);
+                  commentDao.save(comment);
         } catch (MyServiceException e) {
             LOGGER.warn("update comment failed " + comment.getId(), e);
             throw new MyServiceException("update comment failed " + comment.getId(), e);

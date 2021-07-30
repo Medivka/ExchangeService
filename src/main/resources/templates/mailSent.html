@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 5.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 
   <meta name="description" content="">
@@ -49,8 +49,9 @@
     </div>
     <a>
       <form th:action="@{/logout}" method="post">
-        <input class="btn btn-outline-primary" type="submit" value="Log out" />
-      </form>  </a>
+        <input class="btn btn-outline-primary" type="submit" value="Log out"/>
+      </form>
+    </a>
     <a href="/myProfile">
       <button class="btn btn-outline-primary" type="submit">My profile</button>
     </a>
@@ -61,65 +62,12 @@
 
   <section class="py-5 text-center container">
     <div class="col-lg-6 col-md-8 mx-auto">
-      <h1 class="fw-light"><a href="/section" >Experience exchange service</a></h1>
+      <h1 class="fw-light"><a href="/section">Experience exchange service</a></h1>
       <p class="lead text-muted"></p>
     </div>
   </section>
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div th:switch="${coursesDTO}">
-        <h2 th:case="null">No courses found!</h2>
-        <div th:case="*">
-          <H1>Courses</H1>
-          <p>
-            <a href="/myCourse" class="btn btn-primary my-2">My courses</a>
-            <a href="/myActualLesson" class="btn btn-secondary my-2">My actual lesson</a>
-            <a href="/admin" class="btn btn-primary my-2">press if you role Admin</a>
-          </p>
-          <table>
-            <thead>
-            <tr>
-              <!--                            <th>Id</th>-->
-              <th>name</th>
-              <th>startCourse</th>
-              <th>endCourse</th>
-              <th>days</th>
-              <th>speaker</th>
-              <th>courseStatus</th>
-              <!--                            <th>lessons</th>-->
-              <th>Listeners</th>
-              <!--                            <th>comments</th>-->
-              <th>price</th>
-              <th>show</th>
-              <th>add</th>
-              <th>del</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="courseDTO : ${coursesDTO}">
-              <!--                            <td th:text="${courseDTO.id}"></td>-->
-              <td th:text="${courseDTO.name}"></td>
-              <td th:text="${courseDTO.startCourse}"></td>
-              <td th:text="${courseDTO.endCourse}"></td>
-              <td th:text="${courseDTO.days}"></td>
-              <td th:text="${courseDTO.speaker}"></td>
-              <td th:text="${courseDTO.courseStatus}"></td>
-              <!--                            <td th:text="${courseDTO.lessons}"></td>-->
-              <td th:text="${courseDTO.listeners}"></td>
-              <!--                            <td th:text="${courseDTO.comments}"></td>-->
-              <td th:text="${courseDTO.price}"></td>
-              <td><a class="btn btn-outline-primary" th:href="@{/lessonList/{id}(id=${courseDTO.id})}">show</a>
-              </td>
-              <td><a class="btn btn-outline-primary" th:href="@{courseAdd/{id}(id=${courseDTO.id})}">subscribe</a>
-              </td> <td><a class="btn btn-outline-primary" th:href="@{courseDelete/{id}(id=${courseDTO.id})}">unsubscribe</a>
-            </td>
-
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <div class="album py-5 bg-light" align="center">
+          <H1>Mail Sent!!!</H1>
   </div>
 </main>
 
@@ -143,33 +91,40 @@
     border: none;
     margin-bottom: 20px;
   }
+
   table thead th {
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     border: none;
     padding: 10px 15px;
     background: #d8d8d8;
     font-size: 14px;
   }
+
   table thead tr th:first-child {
     border-radius: 8px 0 0 8px;
   }
+
   table thead tr th:last-child {
     border-radius: 0 8px 8px 0;
   }
+
   table tbody td {
-    text-align: center;
+    text-align: left;
     border: none;
     padding: 10px 15px;
     font-size: 14px;
     vertical-align: top;
   }
-  table tbody tr:nth-child(even){
+
+  table tbody tr:nth-child(even) {
     background: #f3f3f3;
   }
+
   table tbody tr td:first-child {
     border-radius: 8px 0 0 8px;
   }
+
   table tbody tr td:last-child {
     border-radius: 0 8px 8px 0;
   }
