@@ -92,7 +92,7 @@
                             <td th:text="${lessonDTO.lessonStatus}"></td>
                             <td th:text="${lessonDTO.price}"></td>
                             <td><a class="btn btn-outline-primary"
-                                   th:href="@{/lesson-update/{id}(id=${lessonDTO.id})}">edit </a></td>
+                                   th:href="@{lesson-update/{id}(id=${lessonDTO.id})}">edit </a></td>
                             <td><a class="btn btn-outline-primary"
                                    th:href="@{lesson-delete/{id}(id=${lessonDTO.id})}">delete </a></td>
                         </tr>
