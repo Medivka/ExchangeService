@@ -21,14 +21,14 @@ public class LessonController {
         this.myModelMapper = myModelMapper;
     }
 
-    @GetMapping("/lesson-update/{id}")
+    @GetMapping("/lessonList/lesson-update/{id}")
     public String updateLessonDTO(@PathVariable("id") Long id, Model model) {
         LessonDTO lessonDTO = myModelMapper.mapToLessonDTO(lessonService.findById(id));
         model.addAttribute("lessonDTO", lessonDTO);
         return "/lesson-update";
     }
 
-    @PostMapping("/lessonList/lesson-update")
+    @PostMapping("/lesson-update")
     public String updateLessonsDTO(LessonDTO lessonDTO) {
          lessonService.update(myModelMapper.mapToLesson(lessonDTO));
         return "redirect:/section";
