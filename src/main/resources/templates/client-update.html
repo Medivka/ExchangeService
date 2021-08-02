@@ -66,64 +66,69 @@
             <p class="lead text-muted"></p>
         </div>
     </section>
-    <div class="album py- bg-light" >
+    <div class="album py-5 bg-light">
         <div class="container">
-            <table>
-                <thead>
-                <tr>
-                    <th>id</th>
-                    <th>username</th>
-                    <th>password</th>
-                    <th>name</th>
-                    <th>lastname</th>
-                    <th>age</th>
-                    <th>email</th>
-                    <th>city</th>
-                    <th>status</th>
-                    <th>Edit</th>
-                </tr>
-                </thead>
-                <tbody>
-                <form action="#" th:action="@{/client-update}" th:object="${profileDTO}" method="post">
-                    <td><label for="id">ID</label>
-                        <input readonly type="number" th:field="*{id}" id="id" placeholder="id"></td>
-                    <td>
-                        <label for="username">username</label>
-                        <input type="text" th:field="*{username}" id="username" placeholder="username"></td>
-                    <td>
-                        <label for="password">password</label>
-                        <input type="text" th:field="*{password}" id="password" placeholder="password">
-                    </td>
-                    <td>
-                        <label for="name">name</label>
-                        <input type="text" th:field="*{name}" id="name" placeholder="name">
-                    </td>
-                    <td>
-                        <label for="lastname">lastname</label>
-                        <input type="text" th:field="*{lastname}" id="lastname" placeholder="lastname"></td>
-                    <td>
-                        <label for="age">age</label>
-                        <input type="number" th:field="*{age}" id="age" placeholder="age"></td>
-                    <td>
-                        <label for="email">email</label>
-                        <input type="text" th:field="*{email}" id="email" placeholder="email"></td>
-                    <td>
-                        <label for="city">city</label>
-                        <input type="text" th:field="*{city}" id="city" placeholder="city"></td>
-                    <td>
-                        <label for="status">status</label>
-                        <input type="text" th:field="*{status}" id="status" placeholder="status"></td>
-                    <td>
-                        <input type="submit" value="Update "></td>
-                </form>
-                </tbody>
-            </table>
+            <form action="#" th:action="@{/client-update}" th:object="${profileDTO}" method="post">
+                <table>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>ID</td>
+                        <td><input readonly type="number" th:field="*{id}" id="id" placeholder="ID"></td>
+                    </tr>
+                    <tr>
+                        <td>username</td>
+                        <td><input type="text" th:field="*{username}" id="username" placeholder="username"></td>
+                    </tr>
+                    <tr>
+                        <td>password</td>
+                        <td><input type="text" th:field="*{password}" id="password" placeholder="password"></td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td><input type="text" th:field="*{name}" id="name" placeholder="name"></td>
+                    </tr>
+                    <tr>
+                        <td>lastname</td>
+                        <td><input type="text" th:field="*{lastname}" id="lastname" placeholder="lastname"></td>
+                    </tr>
+                    <tr>
+                        <td>age</td>
+                        <td><input type="text" th:field="*{age}" id="age" placeholder="age"></td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td><input type="text" th:field="*{email}" id="email" placeholder="email"></td>
+                    </tr>
+                    <tr>
+                        <td>city</td>
+                        <td><input type="text" th:field="*{city}" id="city" placeholder="city"></td>
+                    </tr>
+                    <tr>
+                        <td>status</td>
+                        <td><select type="text" th:field="*{status}" id="status"/>
+                            <option value="LISTENER">LISTENER</option>
+                            <option value="SPEAKER">SPEAKER</option>
+                            </select></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <input type="submit" value="Update profile">
+            </form>
+            <div></div>
+            <br/>
             <p>
                 <a href="/section">
                     <button class="btn btn-outline-primary" type="submit">return main</button>
                 </a>
             </p>
         </div>
+    </div>
     </div>
 </main>
 
@@ -133,7 +138,6 @@
             <a href="#">Back to top</a>
         </p>
         <p class="mb-1">All right reserved. Created by Sacuta Vitalik. </p>
-
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -143,8 +147,8 @@
 </html>
 <style>
     table {
-        width: 90%;
-        border: 5px;
+        width: 100%;
+        border: none;
         margin-bottom: 20px;
     }
 
