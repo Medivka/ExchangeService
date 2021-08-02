@@ -102,9 +102,9 @@
                             <td th:text="${profileDTO.city}"></td>
                             <td th:text="${profileDTO.status}"></td>
 
-                            <td><a class="btn btn-outline-primary" th:href="@{client-update/{id}(id=${profileDTO.id})}">edit</a>
+                            <td><a class="btn btn-outline-primary" th:href="@{profile-update/{id}(id=${profileDTO.id})}">edit</a>
                             </td>
-                            <td><a class="btn btn-outline-primary" th:href="@{client-delete/{id}(id=${profileDTO.id})}">delete</a>
+                            <td><a class="btn btn-outline-primary" th:href="@{profile-delete/{id}(id=${profileDTO.id})}">delete</a>
                             </td>
                             <td><a class="btn btn-outline-primary" th:href="@{getAdmin/{id}(id=${profileDTO.id})}">get Admin</a>
                             </td>

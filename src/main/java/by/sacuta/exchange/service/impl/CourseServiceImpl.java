@@ -87,7 +87,16 @@ public class CourseServiceImpl implements CourseService {
     public void update(Course course) {
         try {
             LOGGER.info("update course " + course.getId());
-            courseDao.save(course);
+            Course courseInDB=courseDao.getById(course.getId());
+            courseInDB.setName(course.getName());
+            courseInDB.setStartCourse(course.getStartCourse());
+            courseInDB.setEndCourse(course.getEndCourse());
+            courseInDB.setDays(course.getDays());
+            courseInDB.setPrice(course.getPrice());
+            courseInDB.setSection(course.getSection());
+            courseInDB.setSpeaker(course.getSpeaker());
+            courseInDB.setCourseStatus(course.getCourseStatus());
+            courseDao.save(courseInDB);
         } catch (MyServiceException e) {
             LOGGER.warn("update course failed: " + course.getId(), e);
             throw new MyServiceException("update course failed: " + course.getId(), e);
@@ -174,14 +183,14 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public boolean existByLessonName(Course course, Lesson lesson) {
-        boolean b = false;
+
         for (int i = 0; i < course.getLessons().size(); i++) {
             Lesson lesson1 = course.getLessons().get(i);
             if (lesson1.getName().equals(lesson.getName())) {
-                b = true;
-            } else b = false;
+               return  true;
+            }
         }
-        return b;
+        return false;
     }
 
     @Override

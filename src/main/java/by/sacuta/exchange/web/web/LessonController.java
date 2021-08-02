@@ -28,7 +28,7 @@ public class LessonController {
         return "/lesson-update";
     }
 
-    @PostMapping("/lessonList/lesson-update/{id}")
+    @PostMapping("/lesson-update")
     public String updateLessonsDTO(LessonDTO lessonDTO) {
          lessonService.update(myModelMapper.mapToLesson(lessonDTO));
         return "redirect:/section";

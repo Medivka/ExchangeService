@@ -74,6 +74,7 @@
                     <th>id</th>
                     <th>name</th>
                     <th>localDateTime</th>
+                    <th>duration</th>
                     <th>lessonStatus</th>
                     <th>price</th>
                     <th>Edit</th>
@@ -89,6 +90,10 @@
                     <td>
                         <label for="localDateTime">localDateTime</label>
                         <input type="text" th:field="*{localDateTime}" id="localDateTime" placeholder="localDateTime">
+                    </td>
+                    <td>
+                        <label for="duration">duration</label>
+                        <input type="number" th:field="*{duration}" id="duration" placeholder="duration">
                     </td>
 
                     <td>

@@ -92,7 +92,16 @@ public class ProfileServiceImpl implements ProfileService {
     public void update(Profile profile) {
         try {
             LOGGER.info("update profile  " + profile.getId());
-            profileDao.save(profile);
+            Profile profileInDB = profileDao.getById(profile.getId());
+            profileInDB.setUsername(profile.getUsername());
+            profileInDB.setName(profile.getName());
+            profileInDB.setLastname(profile.getLastname());
+            profileInDB.setPassword(profile.getPassword());
+            profileInDB.setEmail(profile.getEmail());
+            profileInDB.setStatus(profile.getStatus());
+            profileInDB.setCity(profile.getCity());
+            profileInDB.setAge(profile.getAge());
+            profileDao.save(profileInDB);
         } catch (MyServiceException e) {
             LOGGER.warn("update profile failed " + profile.getId(), e);
             throw new MyServiceException("update profile failed " + profile.getId(), e);
@@ -181,8 +190,9 @@ public class ProfileServiceImpl implements ProfileService {
             throw new MyServiceException("getAllSpeaker  failed", e);
         }
     }
+
     @Override
-    public void getRoleAdmin(Profile profile){
+    public void getRoleAdmin(Profile profile) {
         profile.getRoles().add(roleDao.getById(2l));
     }
 }

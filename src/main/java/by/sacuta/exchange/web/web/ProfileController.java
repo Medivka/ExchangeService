@@ -72,14 +72,14 @@ public class ProfileController {
         return "admin";
     }
 
-    @GetMapping("/client-update/{id}")
+    @GetMapping("/profile-update/{id}")
     public String updateClientDTO(@PathVariable("id") Long id, Model model) {
         ProfileDTO profileDTO = myModelMapper.mapToProfileDTO(profileService.findByID(id));
         model.addAttribute("profileDTO", profileDTO);
-        return "/client-update";
+        return "/profile-update";
     }
 
-    @PostMapping("/client-update")
+    @PostMapping("/profile-update")
     public String updateClientsDTO(ProfileDTO profileDTO) {
         profileService.update(myModelMapper.mapToProfile(profileDTO));
         return "redirect:/admin";
@@ -111,7 +111,7 @@ public class ProfileController {
         return "myCourse";
     }
 
-    @GetMapping("client-delete/{id}")
+    @GetMapping("profile-delete/{id}")
     public String deleteClient(@PathVariable("id") Long id) {
         profileService.delete(id);
         return "redirect:/admin";

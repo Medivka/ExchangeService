@@ -3,7 +3,6 @@ package by.sacuta.exchange.domain.model;
 import by.sacuta.exchange.domain.enums.LessonStatus;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

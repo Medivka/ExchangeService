@@ -44,26 +44,17 @@ public class Course {
     @OneToMany(mappedBy = "course", orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Lesson> lessons = new LinkedList<>();
-    @ManyToMany(fetch = FetchType.LAZY
-            , cascade = {
-//           CascadeType.MERGE,
-    })
+    @ManyToMany(fetch = FetchType.LAZY )
     @JoinTable(name = "course_comment",
             joinColumns = @JoinColumn(name = "id_course"),
             inverseJoinColumns = @JoinColumn(name = "id_comment"))
     private List<Comment> comments = new LinkedList<>();
     @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY
-//            , cascade = CascadeType.MERGE
-    )
+    @ManyToMany(fetch = FetchType.LAZY)
 
     @JoinTable(name = "course_profile",
             joinColumns = @JoinColumn(name = "id_course"),
             inverseJoinColumns = @JoinColumn(name = "id_profile"))
     private List<Profile> listeners = new LinkedList<>();
     private Integer price;
-
-
-
-
 }

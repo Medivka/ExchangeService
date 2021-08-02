@@ -64,7 +64,11 @@ public class LessonServiceImpl implements LessonService {
     public void update(Lesson lesson) {
         try {
             LOGGER.info("update lesson " + lesson.getId());
-            lessonDao.save(lesson);
+            Lesson les=lessonDao.getById(lesson.getId());
+            les.setLessonStatus(lesson.getLessonStatus());
+            les.setDuration(lesson.getDuration());
+            les.setPrice(lesson.getPrice());
+            lessonDao.save(les);
         } catch (MyServiceException e) {
             LOGGER.warn("update lesson failed " + lesson.getId(), e);
             throw new MyServiceException("update lesson failed " + lesson.getId(), e);

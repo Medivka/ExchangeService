@@ -50,10 +50,12 @@ public  class Profile implements UserDetails {
     @OneToMany(mappedBy = "speaker", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Course> courseList = new LinkedList<>();
     @JsonIgnore
-    @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY, cascade = {
+    @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY
+         , cascade = {
             CascadeType.MERGE,
-            CascadeType.PERSIST
-    })
+            CascadeType.REMOVE
+    }
+    )
     private List<Comment> comments = new LinkedList<>();
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY

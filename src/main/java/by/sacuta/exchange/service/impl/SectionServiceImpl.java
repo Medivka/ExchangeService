@@ -83,7 +83,9 @@ public class SectionServiceImpl implements SectionService {
     public void update(Section section) {
         try {
             LOGGER.info("update section  " + section.getId());
-            sectionDao.save(section);
+            Section sectionInDB=sectionDao.getById(section.getId());
+            sectionInDB.setName(section.getName());
+            sectionDao.save(sectionInDB);
         } catch (MyServiceException e) {
             LOGGER.warn("update section failed " + section.getId(), e);
             throw new MyServiceException("update section failed " + section.getId(), e);

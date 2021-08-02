@@ -23,7 +23,9 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile")
     private Profile profile;
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.LAZY
+//            , cascade = CascadeType.MERGE
+    )
     @JoinTable(name = "course_comment",
             joinColumns = @JoinColumn(name = "id_comment"),
             inverseJoinColumns = @JoinColumn(name = "id_course"))
