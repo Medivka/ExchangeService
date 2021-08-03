@@ -57,4 +57,101 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "id_profile"))
     private List<Profile> listeners = new LinkedList<>();
     private Integer price;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getStartCourse() {
+        return startCourse;
+    }
+
+    public void setStartCourse(LocalDate startCourse) {
+        this.startCourse = startCourse;
+    }
+
+    public LocalDate getEndCourse() {
+        return endCourse;
+    }
+
+    public void setEndCourse(LocalDate endCourse) {
+        this.endCourse = endCourse;
+    }
+
+    public Integer getDays() {
+        return days;
+    }
+
+    public void setDays(Integer days) {
+        this.days = days;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
+
+    public Profile getSpeaker() {
+        return speaker;
+    }
+
+    public void setSpeaker(Profile speaker) {
+        this.speaker = speaker;
+    }
+
+    public CourseStatus getCourseStatus() {
+        return courseStatus;
+    }
+
+    public void setCourseStatus(CourseStatus courseStatus) {
+        this.courseStatus = courseStatus;
+    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<Profile> getListeners() {
+        return listeners;
+    }
+
+    public void setListeners(List<Profile> listeners) {
+        this.listeners = listeners;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
 }

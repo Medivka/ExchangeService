@@ -64,7 +64,7 @@ public class LessonServiceImpl implements LessonService {
     public void update(Lesson lesson) {
         try {
             LOGGER.info("update lesson " + lesson.getId());
-            Lesson les=lessonDao.getById(lesson.getId());
+            Lesson les = lessonDao.getById(lesson.getId());
             les.setName(lesson.getName());
             les.setLocalDateTime(lesson.getLocalDateTime());
             les.setLessonStatus(lesson.getLessonStatus());
@@ -80,8 +80,12 @@ public class LessonServiceImpl implements LessonService {
     @Override
     public Lesson findById(Long id) {
         try {
-            LOGGER.info("findById lesson " + id);
-            return lessonDao.getById(id);
+            if (lessonDao.existsById(id)) {
+                LOGGER.info("findById lesson " + id);
+                return lessonDao.getById(id);
+            } else {
+                throw new MyServiceException("lesson not found");
+            }
         } catch (MyServiceException e) {
             LOGGER.warn("findById lesson failed " + id, e);
             throw new MyServiceException("findById lesson failed " + id, e);

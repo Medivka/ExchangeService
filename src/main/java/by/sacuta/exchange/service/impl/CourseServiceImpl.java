@@ -201,7 +201,6 @@ public class CourseServiceImpl implements CourseService {
     public void addLesson(Course course, Lesson lesson) {
         try {
             lesson.setCourse(course);
-
             LOGGER.info(String.format("add lesson: %s  to course:%s", lesson.getId(), course.getId()));
         } catch (MyServiceException e) {
             LOGGER.warn(String.format("add lesson: %s  to course: %s  Failed", lesson.getId(), course.getId()), e);

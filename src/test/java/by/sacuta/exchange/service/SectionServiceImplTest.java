@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 
 @RunWith(SpringRunner.class)
@@ -15,7 +16,8 @@ import javax.annotation.Resource;
 public class SectionServiceImplTest {
 
     @Resource
-    SectionService  sectionService;
+    private SectionService sectionService;
+
     @Test
     public void getAll() {
         Assert.assertNotNull(sectionService.getAll());

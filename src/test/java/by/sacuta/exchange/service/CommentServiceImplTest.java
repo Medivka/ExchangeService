@@ -14,10 +14,11 @@ import javax.annotation.Resource;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CommentServiceImplTest {
+
     @Resource
-    CommentService commentService;
+    private CommentService commentService;
     @Resource
-    ProfileService profileService;
+    private ProfileService profileService;
 
     @Test
     public void createNewComment() {

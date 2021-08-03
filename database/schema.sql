@@ -94,7 +94,7 @@ CREATE TABLE `service`.`lesson`
     `local_date_time` datetime(6) DEFAULT NULL,
     `name`            varchar(255) NOT NULL,
     `price`           int          DEFAULT NULL,
-    `course`          bigint       NOT NULL,
+    `course`          bigint       DEFAULT NULL,
     PRIMARY KEY (`id`),
     KEY               `FKb17a13pfigs9wj87ph9ms4wjh` (`course`),
     CONSTRAINT `FKb17a13pfigs9wj87ph9ms4wjh` FOREIGN KEY (`course`) REFERENCES `course` (`id`)

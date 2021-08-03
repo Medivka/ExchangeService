@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 @SpringBootTest
 public class ProfileServiceImplTest {
     @Resource
-    ProfileService profileService;
+    private ProfileService profileService;
 
     @Test
     public void findByUsername() {
@@ -24,7 +24,7 @@ public class ProfileServiceImplTest {
 
     @Test
     @Transactional
-    public void update() {;
+    public void update() {
         Profile clients = profileService.findByID(1l);
         clients.setName("adminki");
         profileService.update(clients);

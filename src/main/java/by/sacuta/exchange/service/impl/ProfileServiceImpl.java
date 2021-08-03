@@ -37,8 +37,8 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public boolean existsByUsername(String username) {
         if (findByUsername(username) == null) {
-            return true;
-        } else return false;
+            return false;
+        } else return true;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ProfileServiceImpl implements ProfileService {
         try {
             if (!existsByUsername(profile.getUsername())) {
                 profileDao.save(profile);
-                LOGGER.info("save profile  " + profile.getId());
+                LOGGER.info(String.format("save profile : %s  username: %s", profile.getId(),profile.getUsername()));
             }
         } catch (MyServiceException e) {
             LOGGER.warn("save profile failed " + profile.getId(), e);
