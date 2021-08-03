@@ -21,6 +21,8 @@ public interface CourseService {
 
     List<Course> getAll();
 
+    boolean existProfileInCourse(Course course, Profile profile);
+
     void addListener(Course course, Profile profile);
 
     void deleteListener(Course course, Profile profile);

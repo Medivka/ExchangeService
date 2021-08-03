@@ -1,11 +1,11 @@
 package by.sacuta.exchange.web.web;
 
-import by.sacuta.exchange.dto.CourseDTO;
-import by.sacuta.exchange.dto.LessonDTO;
-import by.sacuta.exchange.dto.SectionDTO;
 import by.sacuta.exchange.domain.model.Course;
 import by.sacuta.exchange.domain.model.Lesson;
 import by.sacuta.exchange.domain.model.Section;
+import by.sacuta.exchange.dto.CourseDTO;
+import by.sacuta.exchange.dto.LessonDTO;
+import by.sacuta.exchange.dto.SectionDTO;
 import by.sacuta.exchange.service.CourseService;
 import by.sacuta.exchange.service.MyModelMapper;
 import by.sacuta.exchange.service.ProfileService;

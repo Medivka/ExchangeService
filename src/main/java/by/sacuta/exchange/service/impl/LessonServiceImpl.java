@@ -65,6 +65,8 @@ public class LessonServiceImpl implements LessonService {
         try {
             LOGGER.info("update lesson " + lesson.getId());
             Lesson les=lessonDao.getById(lesson.getId());
+            les.setName(lesson.getName());
+            les.setLocalDateTime(lesson.getLocalDateTime());
             les.setLessonStatus(lesson.getLessonStatus());
             les.setDuration(lesson.getDuration());
             les.setPrice(lesson.getPrice());
