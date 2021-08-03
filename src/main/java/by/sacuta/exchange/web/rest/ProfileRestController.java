@@ -1,11 +1,12 @@
 package by.sacuta.exchange.web.rest;
 
+import by.sacuta.exchange.config.MyCustomUserDetailsService;
+import by.sacuta.exchange.domain.model.Course;
+import by.sacuta.exchange.domain.model.Lesson;
+import by.sacuta.exchange.domain.model.Profile;
 import by.sacuta.exchange.dto.CourseDTO;
 import by.sacuta.exchange.dto.LessonDTO;
 import by.sacuta.exchange.dto.ProfileDTO;
-import by.sacuta.exchange.domain.model.Profile;
-import by.sacuta.exchange.domain.model.Course;
-import by.sacuta.exchange.domain.model.Lesson;
 import by.sacuta.exchange.service.MyModelMapper;
 import by.sacuta.exchange.service.ProfileService;
 import org.slf4j.Logger;
@@ -24,12 +25,13 @@ public class ProfileRestController {
 
     private final ProfileService profileService;
     private final MyModelMapper myModelMapper;
+    private final MyCustomUserDetailsService userDetailsService;
 
-    public ProfileRestController(ProfileService profileService, MyModelMapper myModelMapper) {
+    public ProfileRestController(ProfileService profileService, MyModelMapper myModelMapper, MyCustomUserDetailsService userDetailsService) {
         this.profileService = profileService;
         this.myModelMapper = myModelMapper;
+        this.userDetailsService = userDetailsService;
     }
-
 
     @GetMapping(value = "/get/all")
     public ResponseEntity<List<ProfileDTO>> read() {
@@ -72,7 +74,7 @@ public class ProfileRestController {
     @PostMapping(value = "/save")
     public ResponseEntity<?> create(@RequestBody ProfileDTO profileDTO) {
         LOGGER.info(String.format( "rest/profile/save/{%s} ",profileDTO.getUsername()));
-        profileService.save(myModelMapper.mapToProfile(profileDTO));
+        userDetailsService.saveUser(myModelMapper.mapToProfile(profileDTO));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

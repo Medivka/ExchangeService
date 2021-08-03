@@ -1,10 +1,9 @@
 package by.sacuta.exchange.web.rest;
 
-import by.sacuta.exchange.dto.CommentDTO;
 import by.sacuta.exchange.domain.model.Comment;
+import by.sacuta.exchange.dto.CommentDTO;
 import by.sacuta.exchange.service.CommentService;
 import by.sacuta.exchange.service.MyModelMapper;
-import by.sacuta.exchange.service.impl.CommentServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

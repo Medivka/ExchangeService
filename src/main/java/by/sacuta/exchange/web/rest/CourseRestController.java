@@ -1,10 +1,10 @@
 package by.sacuta.exchange.web.rest;
 
+import by.sacuta.exchange.domain.enums.CourseStatus;
 import by.sacuta.exchange.domain.model.Comment;
+import by.sacuta.exchange.domain.model.Course;
 import by.sacuta.exchange.dto.CommentDTO;
 import by.sacuta.exchange.dto.CourseDTO;
-import by.sacuta.exchange.domain.enums.CourseStatus;
-import by.sacuta.exchange.domain.model.Course;
 import by.sacuta.exchange.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

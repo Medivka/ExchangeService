@@ -1,9 +1,9 @@
 package by.sacuta.exchange.web.rest;
 
-import by.sacuta.exchange.dto.CourseDTO;
-import by.sacuta.exchange.dto.SectionDTO;
 import by.sacuta.exchange.domain.model.Course;
 import by.sacuta.exchange.domain.model.Section;
+import by.sacuta.exchange.dto.CourseDTO;
+import by.sacuta.exchange.dto.SectionDTO;
 import by.sacuta.exchange.service.MyModelMapper;
 import by.sacuta.exchange.service.SectionService;
 import org.slf4j.Logger;

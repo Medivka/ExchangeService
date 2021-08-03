@@ -1,8 +1,8 @@
 package by.sacuta.exchange.web.rest;
 
-import by.sacuta.exchange.dto.LessonDTO;
 import by.sacuta.exchange.domain.enums.LessonStatus;
 import by.sacuta.exchange.domain.model.Lesson;
+import by.sacuta.exchange.dto.LessonDTO;
 import by.sacuta.exchange.service.LessonService;
 import by.sacuta.exchange.service.MyModelMapper;
 import org.slf4j.Logger;

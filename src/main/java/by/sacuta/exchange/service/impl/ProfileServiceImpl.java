@@ -3,11 +3,11 @@ package by.sacuta.exchange.service.impl;
 import by.sacuta.exchange.dao.CourseDao;
 import by.sacuta.exchange.dao.ProfileDao;
 import by.sacuta.exchange.dao.RoleDao;
-import by.sacuta.exchange.exception.MyServiceException;
+import by.sacuta.exchange.domain.enums.ProfileStatus;
 import by.sacuta.exchange.domain.model.Course;
 import by.sacuta.exchange.domain.model.Lesson;
 import by.sacuta.exchange.domain.model.Profile;
-import by.sacuta.exchange.domain.enums.ProfileStatus;
+import by.sacuta.exchange.exception.MyServiceException;
 import by.sacuta.exchange.service.ProfileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -193,6 +193,6 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public void getRoleAdmin(Profile profile) {
-        profile.getRoles().add(roleDao.getById(2l));
+          profile.getRoles().add(roleDao.getById(2l));
     }
 }

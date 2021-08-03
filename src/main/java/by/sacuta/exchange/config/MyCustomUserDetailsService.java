@@ -1,32 +1,34 @@
 package by.sacuta.exchange.config;
 
-import by.sacuta.exchange.dao.ProfileDao;
 import by.sacuta.exchange.dao.RoleDao;
 import by.sacuta.exchange.domain.model.Profile;
 import by.sacuta.exchange.domain.model.Role;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import by.sacuta.exchange.service.impl.ProfileServiceImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Service
 @Transactional
 public class MyCustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private RoleDao roleDao;
-    @Autowired
-    private ProfileDao profileDao;
+    private final RoleDao roleDao;
+    private final ProfileServiceImpl profileService;
+
+    public MyCustomUserDetailsService(RoleDao roleDao, ProfileServiceImpl profileService) {
+        this.roleDao = roleDao;
+        this.profileService = profileService;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Profile profile = profileDao.findByUsername(username);
+        Profile profile = profileService.findByUsername(username);
         if (profile == null) {
             throw new UsernameNotFoundException("profile not found");
         }
@@ -34,21 +36,13 @@ public class MyCustomUserDetailsService implements UserDetailsService {
     }
 
     public boolean saveUser(Profile profile) {
-        boolean b = true;
-        for (int i = 0; i < profileDao.findAll().size(); i++) {
-            Profile profile1 = profileDao.findAll().get(i);
-            if (profile1.getUsername().equals(profile.getUsername())) {
-                b = false;
-            }
-        }
-        if (b) {
-            Set<Role> roles = new HashSet<>() {
-            };
+        if (!profileService.existsByUsername(profile.getUsername())) {
+            Set<Role> roles = new HashSet<>();
             roles.add(roleDao.getById(1L));
             profile.setRoles(roles);
-            profile.setPassword((profile.getPassword()));
-            profileDao.save(profile);
+            profileService.save(profile);
+            return true;
         }
-        return true;
+        return false;
     }
 }
