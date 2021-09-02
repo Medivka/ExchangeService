@@ -1,7 +1,6 @@
 package by.sacuta.exchange.service.impl;
 
 import by.sacuta.exchange.dao.SectionDao;
-import by.sacuta.exchange.exception.MyServiceException;
 import by.sacuta.exchange.domain.model.Course;
 import by.sacuta.exchange.domain.model.Section;
 import by.sacuta.exchange.service.SectionService;
@@ -25,81 +24,45 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public List<Section> getAll() {
-
-        try {
-            LOGGER.info("get all section");
-            return sectionDao.findAll();
-        } catch (MyServiceException e) {
-            LOGGER.warn("get all section failed ", e);
-            throw new MyServiceException("get all section failed ", e);
-        }
+        LOGGER.info("get all section");
+        return sectionDao.findAll();
     }
 
     @Override
     public Section getById(Long id) {
-        try {
-            LOGGER.info("findByID section  " + id);
-            return sectionDao.getById(id);
-        } catch (MyServiceException e) {
-            LOGGER.warn("findByID section failed " + id, e);
-            throw new MyServiceException("findByID section failed " + id, e);
-        }
+        LOGGER.info("findByID section  " + id);
+        return sectionDao.getById(id);
     }
 
     @Override
     public void createNewSection(String name) {
-        try {
-            LOGGER.info("create new section  " + name);
-            sectionDao.save(new Section(name));
-        } catch (MyServiceException e) {
-            LOGGER.warn("create new section failed " + name, e);
-            throw new MyServiceException("create new section failed " + name, e);
-        }
+        LOGGER.info("create new section  " + name);
+        sectionDao.save(new Section(name));
     }
 
     @Override
     public void save(Section section) {
-        try {
-            LOGGER.info("save section  " + section.getName());
-            sectionDao.save(section);
-        } catch (MyServiceException e) {
-            LOGGER.warn("save section failed " + section.getName(), e);
-            throw new MyServiceException("save section failed " + section.getName(), e);
-        }
+        LOGGER.info("save section  " + section.getName());
+        sectionDao.save(section);
     }
 
     @Override
     public void delete(Long id) {
-        try {
-            LOGGER.info("delete section  " + id);
-            sectionDao.delete(sectionDao.getById(id));
-        } catch (MyServiceException e) {
-            LOGGER.warn("delete section failed " + id, e);
-            throw new MyServiceException("delete section failed " + id, e);
-        }
+        LOGGER.info("delete section  " + id);
+        sectionDao.delete(sectionDao.getById(id));
     }
 
     @Override
     public void update(Section section) {
-        try {
-            LOGGER.info("update section  " + section.getId());
-            Section sectionInDB=sectionDao.getById(section.getId());
-            sectionInDB.setName(section.getName());
-            sectionDao.save(sectionInDB);
-        } catch (MyServiceException e) {
-            LOGGER.warn("update section failed " + section.getId(), e);
-            throw new MyServiceException("update section failed " + section.getId(), e);
-        }
+        LOGGER.info("update section  " + section.getId());
+        Section sectionInDB = sectionDao.getById(section.getId());
+        sectionInDB.setName(section.getName());
+        sectionDao.save(sectionInDB);
     }
 
     @Override
     public List<Course> getAllCourse(Section section) {
-        try {
-            LOGGER.info("getAllCourse section  " + section.getId());
-            return section.getCourseList();
-        } catch (MyServiceException e) {
-            LOGGER.warn("getAllCourse section failed " + section.getId(), e);
-            throw new MyServiceException("getAllCourse section failed " + section.getId(), e);
-        }
+        LOGGER.info("getAllCourse section  " + section.getId());
+        return section.getCourseList();
     }
 }
