@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
