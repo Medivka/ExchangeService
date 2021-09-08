@@ -68,7 +68,7 @@ public class CommentRestController {
 
     @PostMapping(value = "/save")
     public ResponseEntity<?> create(@RequestBody CommentDTO commentDTO) {
-        LOGGER.info(String.format( "rest/save $s",commentDTO.getMessage()));
+        LOGGER.info(String.format( "rest/save %s",commentDTO.getMessage()));
         commentService.save(myModelMapper.mapToComment(commentDTO));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

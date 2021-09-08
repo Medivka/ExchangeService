@@ -130,7 +130,6 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public List<Profile> getAllSpeaker() {
-
         LOGGER.info("getAllSpeaker profile ");
         List<Profile> speakers = new LinkedList<>();
         for (Profile prof : profileDao.findAll()

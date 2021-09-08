@@ -25,14 +25,10 @@ public class CourseServiceImpl implements CourseService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CourseServiceImpl.class);
 
     private final CourseDao courseDao;
-    private final CommentDao commentDao;
-    private final LessonDao lessonDao;
     private final ProfileDao profileDao;
 
-    public CourseServiceImpl(CourseDao courseDao, CommentDao commentDao, LessonDao lessonDao, ProfileDao profileDao) {
+    public CourseServiceImpl(CourseDao courseDao, ProfileDao profileDao) {
         this.courseDao = courseDao;
-        this.commentDao = commentDao;
-        this.lessonDao = lessonDao;
         this.profileDao = profileDao;
     }
 
@@ -65,14 +61,12 @@ public class CourseServiceImpl implements CourseService {
         course.setPrice(price);
         courseDao.save(course);
         LOGGER.info("create new course ");
-
     }
 
     @Override
     public void save(Course course) {
         LOGGER.info("save course " + course.getId());
         courseDao.save(course);
-
     }
 
     @Override
@@ -88,21 +82,18 @@ public class CourseServiceImpl implements CourseService {
         courseInDB.setSpeaker(course.getSpeaker());
         courseInDB.setCourseStatus(course.getCourseStatus());
         courseDao.save(courseInDB);
-
     }
 
     @Override
     public void delete(Long id) {
         LOGGER.info("delete course " + id);
         courseDao.delete(courseDao.getById(id));
-
     }
 
     @Override
     public Course findById(Long id) {
         LOGGER.info("find  course by id " + id);
         return courseDao.getById(id);
-
     }
 
     @Override
@@ -132,7 +123,6 @@ public class CourseServiceImpl implements CourseService {
             update(course1);
             LOGGER.info(String.format("add listener: %s  to course:%s", profile.getId(), course.getId()));
         }
-
     }
 
     @Override
@@ -148,8 +138,6 @@ public class CourseServiceImpl implements CourseService {
         }
         courseFromDB.setListeners(listenerList);
         update(courseFromDB);
-
-
     }
 
     @Override

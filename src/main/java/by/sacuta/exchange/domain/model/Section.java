@@ -15,7 +15,9 @@ public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     @OneToMany(mappedBy = "section", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Course> courseList = new LinkedList<>();
 

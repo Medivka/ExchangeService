@@ -1,9 +1,6 @@
 package by.sacuta.exchange.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -14,15 +11,19 @@ import java.util.List;
 @Table(name = "comment")
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
+@Builder
 public class Comment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String message;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile")
     private Profile profile;
+
     @ManyToMany(fetch = FetchType.LAZY
 //            , cascade = CascadeType.MERGE
     )

@@ -15,18 +15,23 @@ import java.time.LocalDateTime;
 @Table(name = "lesson")
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Lesson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private LocalDateTime localDateTime;
+
     private Integer duration;
+
     @Enumerated(EnumType.STRING)
     private LessonStatus lessonStatus;
+
     private Integer price;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course")
     private Course course;

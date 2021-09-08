@@ -5,6 +5,7 @@ import by.sacuta.exchange.dto.ProfileDTO;
 import by.sacuta.exchange.domain.model.Profile;
 import by.sacuta.exchange.service.MyModelMapper;
 import by.sacuta.exchange.service.ProfileService;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -58,9 +59,9 @@ public class RegistrationController {
 
 
     @GetMapping("/myusername")
-    public User getCurrentUser(Principal principal) {
-        return ((User) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal());
+    public String getCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+        return username;
     }
 }

@@ -31,7 +31,6 @@ public class LessonServiceImpl implements LessonService {
     public void createNewLesson(String name, Course course, LocalDateTime localDateTime, Integer duration, LessonStatus lessonStatus, Integer price) {
         LOGGER.info("create new lesson ");
         lessonDao.save(new Lesson(name, course, localDateTime, duration, lessonStatus, price));
-
     }
 
     @Override
@@ -66,14 +65,12 @@ public class LessonServiceImpl implements LessonService {
         } else {
             throw new MyServiceException("lesson not found");
         }
-
     }
 
     @Override
     public List<Lesson> getAll() {
         LOGGER.info("getAll lesson ");
         return lessonDao.findAll();
-
     }
 
     @Override

@@ -10,45 +10,51 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @Entity
 @Table(name = "profile")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 public  class Profile implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @NotEmpty(message = "not be empty")
     @Column(name="username")
     @Size(min = 2,max = 15,message = "invalid username")
     @NotEmpty(message = "not be empty")
     private String username;
+
     @NotEmpty(message = "not be empty")
     @Size(min = 2,max = 15,message = "invalid password")
     private String password;
+
     private String name;
+
     private String lastname;
+
     private Integer age;
+
     private String email;
+
     private String city;
+
     @Enumerated(EnumType.STRING)
     private ProfileStatus status;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "profile_role",
             joinColumns = {@JoinColumn(name = "client_id")},
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
     @OneToMany(mappedBy = "speaker", orphanRemoval = true, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Course> courseList = new LinkedList<>();
+
     @JsonIgnore
     @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY
          , cascade = {
@@ -57,6 +63,7 @@ public  class Profile implements UserDetails {
     }
     )
     private List<Comment> comments = new LinkedList<>();
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY
             //            , cascade = CascadeType.MERGE
