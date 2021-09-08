@@ -29,7 +29,7 @@ public class LessonRestController {
         this.lessonService = lessonService;
     }
 
-    @GetMapping(value = "/get/all")
+    @GetMapping(value = "/all")
     public ResponseEntity<List<LessonDTO>> getAll() {
         LOGGER.info("rest/lesson/get/all ");
 
@@ -43,7 +43,7 @@ public class LessonRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/get/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<LessonDTO> getById(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/lesson/get/{%s} ",id));
 
@@ -53,7 +53,7 @@ public class LessonRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/lesson/delete/{%s} ",id));
 
@@ -77,7 +77,7 @@ public class LessonRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody LessonDTO lessonDTO) {
         LOGGER.info(String.format( "rest/lesson/update/{%s} ",id));
         boolean update = false;

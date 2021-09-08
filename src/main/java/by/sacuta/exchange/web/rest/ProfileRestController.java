@@ -33,7 +33,7 @@ public class ProfileRestController {
         this.userDetailsService = userDetailsService;
     }
 
-    @GetMapping(value = "/get/all")
+    @GetMapping(value = "/all")
     public ResponseEntity<List<ProfileDTO>> read() {
         LOGGER.info("rest/profile/get/all ");
         final List<ProfileDTO> profileDTOS = new LinkedList<>();
@@ -46,7 +46,7 @@ public class ProfileRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/get/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<ProfileDTO> read(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/profile/get/{%s} ",id));
         final ProfileDTO clientDTO = myModelMapper.mapToProfileDTO(profileService.findByID(id));
@@ -55,7 +55,7 @@ public class ProfileRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/profile/delete/{%s} ",id));
         boolean delete = false;
@@ -78,7 +78,7 @@ public class ProfileRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody ProfileDTO profileDTO) {
         LOGGER.info(String.format( "rest/profile/update/{%s} ",id));
         boolean update = false;
@@ -95,7 +95,7 @@ public class ProfileRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @GetMapping(value = "/get/getAllMyCourse/{id}")
+    @GetMapping(value = "/getAllMyCourse/{id}")
     public ResponseEntity<List<CourseDTO>> getAllMyCourse(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/profile/getAllMyCourse/{%s} ",id));
         final List<CourseDTO> courseDTOS = new LinkedList<>();
@@ -108,7 +108,7 @@ public class ProfileRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/get/getActualLesson/{id}")
+    @GetMapping(value = "/getActualLesson/{id}")
     public ResponseEntity<List<LessonDTO>> getActualLesson(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/profile/getActualLesson/{%s} ",id));
         final List<LessonDTO> lessonDTOS = new LinkedList<>();

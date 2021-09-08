@@ -28,7 +28,7 @@ public class SectionRestController {
         this.myModelMapper = myModelMapper;
     }
 
-    @GetMapping(value = "/get/all")
+    @GetMapping(value = "/all")
     public ResponseEntity<List<SectionDTO>> read() {
         LOGGER.info("rest/section/get/all ");
         final List<SectionDTO> sectionDTOS = new LinkedList<>();
@@ -41,7 +41,7 @@ public class SectionRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/get/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<SectionDTO> read(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/section/get/{%s} ",id));
         final SectionDTO sectionDTO = myModelMapper.mapToSectionDTO(sectionService.getById(id));
@@ -71,7 +71,7 @@ public class SectionRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody SectionDTO sectionDTO) {
         LOGGER.info(String.format( "rest/section/update/{%s} ",id));
         boolean update = false;
@@ -88,7 +88,7 @@ public class SectionRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/section/delete/{%s} ",id));
         boolean delete = false;

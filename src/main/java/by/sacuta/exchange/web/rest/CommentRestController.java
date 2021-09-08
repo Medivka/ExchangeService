@@ -27,7 +27,7 @@ public class CommentRestController {
         this.myModelMapper = myModelMapper;
     }
 
-    @GetMapping(value = "/get/all")
+    @GetMapping(value = "/all")
     public ResponseEntity<List<CommentDTO>> read() {
         LOGGER.info("rest/comment/get/all ");
         final List<CommentDTO> commentDTOList = new LinkedList<>();
@@ -40,7 +40,7 @@ public class CommentRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/get/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<CommentDTO> read(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/comment/get/{%s} ",id));
         final CommentDTO commentDTO = myModelMapper.mapToCommentDTO(commentService.findById(id));
@@ -49,7 +49,7 @@ public class CommentRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/comment/delete/{%s} ",id));
 
@@ -73,7 +73,7 @@ public class CommentRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody CommentDTO commentDTO) {
         LOGGER.info(String.format( "rest/update/get/{%s} ",id));
         boolean update = false;

@@ -35,7 +35,7 @@ public class CourseRestController {
         this.profileService = profileService;
     }
 
-    @GetMapping(value = "/get/all")
+    @GetMapping(value = "/all")
     public ResponseEntity<List<CourseDTO>> getAll() {
         LOGGER.info("rest/course/get/all ");
         final List<CourseDTO> courseDTOList = new LinkedList<>();
@@ -48,7 +48,7 @@ public class CourseRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping(value = "/get/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<CourseDTO> getById(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/course/get/{%s} ",id));
         final CourseDTO courseDTO = myModelMapper.mapToCourseDTO(courseService.findById(id));
@@ -57,7 +57,7 @@ public class CourseRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<?> deleteById(@PathVariable(name = "id") long id) {
         LOGGER.info(String.format( "rest/course/delete/{%s} ",id));
         boolean delete = false;
@@ -80,7 +80,7 @@ public class CourseRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/update/{id}")
+    @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable(name = "id") long id, @RequestBody CourseDTO courseDTO) {
         LOGGER.info(String.format( "rest/course/update/{%s} ",id));
 
