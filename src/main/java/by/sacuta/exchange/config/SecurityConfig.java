@@ -15,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
+import java.util.LinkedList;
+
 
 @Configuration
 @EnableWebSecurity
@@ -55,8 +57,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PrincipalExtractor principalExtractor(MyCustomUserDetailsService myCustomUserDetailsService){
         return map -> {
+            LinkedList list=new LinkedList();
           return new Profile();
-
+///dev 1;
 
 
         };
