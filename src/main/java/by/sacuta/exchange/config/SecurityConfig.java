@@ -1,5 +1,7 @@
 package by.sacuta.exchange.config;
 
+import by.sacuta.exchange.domain.model.Profile;
+import by.sacuta.exchange.service.ProfileService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
@@ -50,6 +52,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         ;
     }
 
+    @Bean
+    public PrincipalExtractor principalExtractor(MyCustomUserDetailsService myCustomUserDetailsService){
+        return map -> {
+          return new Profile();
+
+
+
+        };
+    }
 
 
     @Autowired
