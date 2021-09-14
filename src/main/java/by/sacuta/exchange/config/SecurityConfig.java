@@ -1,5 +1,6 @@
 package by.sacuta.exchange.config;
 
+import by.sacuta.exchange.domain.enums.ProfileStatus;
 import by.sacuta.exchange.domain.model.Profile;
 import by.sacuta.exchange.service.ProfileService;
 import org.modelmapper.ModelMapper;
@@ -25,9 +26,10 @@ import java.util.LinkedList;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final MyCustomUserDetailsService myCustomUserDetailsService;
-
-    public SecurityConfig(MyCustomUserDetailsService myCustomUserDetailsService) {
+private final ProfileService profileService;
+    public SecurityConfig(MyCustomUserDetailsService myCustomUserDetailsService, ProfileService profileService) {
         this.myCustomUserDetailsService = myCustomUserDetailsService;
+        this.profileService=profileService;
     }
 
     @Bean
@@ -58,8 +60,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PrincipalExtractor principalExtractor(MyCustomUserDetailsService myCustomUserDetailsService){
         return map -> {
-            ArrayList list=new ArrayList();
-          return new Profile();
+            if(profileService.existsByUsername((String) map.get("email"))){
+               return myCustomUserDetailsService.loadUserByUsername((String) map.get("email"));
+            }else {
+                Profile profile=new Profile();
+                profile.setUsername((String) map.get("email"));
+                profile.setPassword((String) map.get("email"));
+                profile.setName((String) map.get("given_name"));
+                profile.setEmail((String) map.get("email"));
+                profile.setLastname("fromGoogle");
+                profile.setAge(30);
+                profile.setCity("SiliconValley");
+                profile.setStatus(ProfileStatus.LISTENER);
+
+                return myCustomUserDetailsService.saveUser(profile);
+            }
+
 ///dev 1;
 
 

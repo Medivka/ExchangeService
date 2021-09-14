@@ -23,14 +23,14 @@ public  class Profile implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty(message = "not be empty")
-    @Column(name="username")
-    @Size(min = 2,max = 15,message = "invalid username")
-    @NotEmpty(message = "not be empty")
+//    @NotEmpty(message = "not be empty")
+//    @Column(name="username")
+//    @Size(min = 2,max = 15,message = "invalid username")
+//    @NotEmpty(message = "not be empty")
     private String username;
 
-    @NotEmpty(message = "not be empty")
-    @Size(min = 2,max = 15,message = "invalid password")
+//    @NotEmpty(message = "not be empty")
+//    @Size(min = 2,max = 15,message = "invalid password")
     private String password;
 
     private String name;
