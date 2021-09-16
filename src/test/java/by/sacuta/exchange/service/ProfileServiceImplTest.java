@@ -14,55 +14,55 @@ import javax.annotation.Resource;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProfileServiceImplTest {
-    @Resource
-    private ProfileService profileService;
-
-    @Test
-    public void findByUsername() {
-        Assert.assertNotNull(profileService.findByUsername("admin"));
-    }
-
-    @Test
-    @Transactional
-    public void update() {
-        Profile clients = profileService.findByID(1l);
-        clients.setName("adminki");
-        profileService.update(clients);
-        Assert.assertEquals(profileService.findByID(1l).getName(), "adminki");
-    }
-
-    @Test
-    public void findByID() {
-        Long id = 1l;
-        Profile profile = profileService.findByID(id);
-        Assert.assertNotNull(profile);
-        Long id2 = profile.getId();
-        Assert.assertEquals(id, id2);
-    }
-
-    @Test
-    public void getAll() {
-        Assert.assertNotNull(profileService.getAll());
-    }
-
-    @Test
-    public void getByUsername() {
-        Assert.assertNotNull(profileService.findByUsername("user"));
-    }
-
-    @Test
-    public void getAllMyCourse() {
-        Assert.assertNotNull(profileService.getAllMyCourse("user"));
-    }
-
-    @Test
-    public void getActualLesson() {
-        Assert.assertNotNull(profileService.getActualLesson("user"));
-
-    }
-
-    @Test
-    public void getAllSpeaker() {
-        Assert.assertNotNull(profileService.getAllSpeaker());
-    }
+//    @Resource
+//    private ProfileService profileService;
+//
+//    @Test
+//    public void findByUsername() {
+//        Assert.assertNotNull(profileService.findByUsername("admin"));
+//    }
+//
+//    @Test
+//    @Transactional
+//    public void update() {
+//        Profile clients = profileService.findByID(1l);
+//        clients.setName("adminki");
+//        profileService.update(clients);
+//        Assert.assertEquals(profileService.findByID(1l).getName(), "adminki");
+//    }
+//
+//    @Test
+//    public void findByID() {
+//        Long id = 1l;
+//        Profile profile = profileService.findByID(id);
+//        Assert.assertNotNull(profile);
+//        Long id2 = profile.getId();
+//        Assert.assertEquals(id, id2);
+//    }
+//
+//    @Test
+//    public void getAll() {
+//        Assert.assertNotNull(profileService.getAll());
+//    }
+//
+//    @Test
+//    public void getByUsername() {
+//        Assert.assertNotNull(profileService.findByUsername("user"));
+//    }
+//
+//    @Test
+//    public void getAllMyCourse() {
+//        Assert.assertNotNull(profileService.getAllMyCourse("user"));
+//    }
+//
+//    @Test
+//    public void getActualLesson() {
+//        Assert.assertNotNull(profileService.getActualLesson("user"));
+//
+//    }
+//
+//    @Test
+//    public void getAllSpeaker() {
+//        Assert.assertNotNull(profileService.getAllSpeaker());
+//    }
 }

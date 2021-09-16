@@ -15,41 +15,41 @@ import javax.annotation.Resource;
 @SpringBootTest
 public class SectionServiceImplTest {
 
-    @Resource
-    private SectionService sectionService;
-
-    @Test
-    public void getAll() {
-        Assert.assertNotNull(sectionService.getAll());
-    }
-
-    @Test
-    public void getById() {
-        Long id = 1l;
-        Section section = sectionService.getById(id);
-        Assert.assertNotNull(section);
-        Long id2 = section.getId();
-        Assert.assertEquals(id, id2);
-    }
-
-    @Test
-    public void createNewSection() {
-
-    }
-
-    @Test
-    @Transactional
-    public void update() {
-        Long id = 1l;
-        String massage = "update";
-        Section section = sectionService.getById(id);
-        section.setName(massage);
-        sectionService.update(section);
-        Assert.assertEquals(massage, sectionService.getById(id).getName());
-    }
-
-    @Test
-    public void getAllCourse() {
-        Assert.assertNotNull(sectionService.getAll());
-    }
+//    @Resource
+//    private SectionService sectionService;
+//
+//    @Test
+//    public void getAll() {
+//        Assert.assertNotNull(sectionService.getAll());
+//    }
+//
+//    @Test
+//    public void getById() {
+//        Long id = 1l;
+//        Section section = sectionService.getById(id);
+//        Assert.assertNotNull(section);
+//        Long id2 = section.getId();
+//        Assert.assertEquals(id, id2);
+//    }
+//
+//    @Test
+//    public void createNewSection() {
+//
+//    }
+//
+//    @Test
+//    @Transactional
+//    public void update() {
+//        Long id = 1l;
+//        String massage = "update";
+//        Section section = sectionService.getById(id);
+//        section.setName(massage);
+//        sectionService.update(section);
+//        Assert.assertEquals(massage, sectionService.getById(id).getName());
+//    }
+//
+//    @Test
+//    public void getAllCourse() {
+//        Assert.assertNotNull(sectionService.getAll());
+//    }
 }

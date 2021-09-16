@@ -4,14 +4,14 @@ CREATE TABLE `service`.`section`
     `id`   bigint NOT NULL AUTO_INCREMENT,
     `name` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 CREATE TABLE `service`.`role`
 (
     `id`   bigint NOT NULL AUTO_INCREMENT,
     `role` varchar(255) DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 CREATE TABLE `service`.`profile`
 (
@@ -25,7 +25,7 @@ CREATE TABLE `service`.`profile`
     `status`   varchar(255) NOT NULL,
     `username` varchar(255) NOT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 CREATE TABLE `service`.`profile_role`
@@ -36,7 +36,7 @@ CREATE TABLE `service`.`profile_role`
     KEY         `FK9uh6ebst0d27ynk42o315r6xj` (`client_id`),
     CONSTRAINT `FK9sx4d1mv1bx7ycdst08d1grmh` FOREIGN KEY (`role_id`) REFERENCES `service`.`role` (`id`),
     CONSTRAINT `FK9uh6ebst0d27ynk42o315r6xj` FOREIGN KEY (`client_id`) REFERENCES `service`.`profile` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 CREATE TABLE `service`.`comment`
 (
@@ -46,7 +46,7 @@ CREATE TABLE `service`.`comment`
     PRIMARY KEY (`id`),
     KEY       `FKbfkaluhym7wlg9h5xv7syg3w` (`profile`),
     CONSTRAINT `FKbfkaluhym7wlg9h5xv7syg3w` FOREIGN KEY (`profile`) REFERENCES `service`.`profile` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 CREATE TABLE `service`.`course`
 (
@@ -64,7 +64,7 @@ CREATE TABLE `service`.`course`
     KEY             `FKkpkjp82mi0r83qnjx7hg8c0el` (`speaker`),
     CONSTRAINT `FKh8jbiya71ka6appat1ld86ark` FOREIGN KEY (`section`) REFERENCES `service`.`section` (`id`),
     CONSTRAINT `FKkpkjp82mi0r83qnjx7hg8c0el` FOREIGN KEY (`speaker`) REFERENCES `service`.`profile` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 CREATE TABLE `service`.`course_profile`
 (
@@ -74,7 +74,7 @@ CREATE TABLE `service`.`course_profile`
     KEY          `FKop93326k2abljx45u1c9mdw2a` (`id_profile`),
     CONSTRAINT `FK51bq93imhxwcg51bb0slo49xr` FOREIGN KEY (`id_course`) REFERENCES `service`.`course` (`id`),
     CONSTRAINT `FKop93326k2abljx45u1c9mdw2a` FOREIGN KEY (`id_profile`) REFERENCES `service`.`profile` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 CREATE TABLE `service`.`course_comment`
 (
@@ -84,7 +84,7 @@ CREATE TABLE `service`.`course_comment`
     KEY          `FKg9mmfq552m9bs2o7yaq5sv9uv` (`id_course`),
     CONSTRAINT `FK45v3mo4kbjbgjiwh99uy9r20r` FOREIGN KEY (`id_comment`) REFERENCES `service`.`comment` (`id`),
     CONSTRAINT `FKg9mmfq552m9bs2o7yaq5sv9uv` FOREIGN KEY (`id_course`) REFERENCES `service`.`course` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 CREATE TABLE `service`.`lesson`
 (
@@ -98,7 +98,7 @@ CREATE TABLE `service`.`lesson`
     PRIMARY KEY (`id`),
     KEY               `FKb17a13pfigs9wj87ph9ms4wjh` (`course`),
     CONSTRAINT `FKb17a13pfigs9wj87ph9ms4wjh` FOREIGN KEY (`course`) REFERENCES `course` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 INSERT INTO `service`.`section` (`id`, `name`)

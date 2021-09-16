@@ -15,37 +15,37 @@ import javax.annotation.Resource;
 @SpringBootTest
 public class CommentServiceImplTest {
 
-    @Resource
-    private CommentService commentService;
-    @Resource
-    private ProfileService profileService;
-
-    @Test
-    public void createNewComment() {
-        commentService.createNewComment("it's test", profileService.findByUsername("admin"));
-    }
-
-    @Test
-    public void getAll() {
-        Assert.assertNotNull(commentService.getAll());
-    }
-
-    @Test
-    public void findById() {
-        Long id = 1l;
-        Comment comment = commentService.findById(1l);
-        Long id2 = comment.getId();
-        Assert.assertEquals(id, id2);
-    }
-
-    @Test
-    @Transactional
-    public void update() {
-        Long id = 1l;
-        String massage = "update";
-        Comment comment = commentService.findById(id);
-        comment.setMessage(massage);
-        commentService.update(comment);
-        Assert.assertEquals(massage, commentService.findById(id).getMessage());
-    }
+//    @Resource
+//    private CommentService commentService;
+//    @Resource
+//    private ProfileService profileService;
+//
+//    @Test
+//    public void createNewComment() {
+//        commentService.createNewComment("it's test", profileService.findByUsername("admin"));
+//    }
+//
+//    @Test
+//    public void getAll() {
+//        Assert.assertNotNull(commentService.getAll());
+//    }
+//
+//    @Test
+//    public void findById() {
+//        Long id = 1l;
+//        Comment comment = commentService.findById(1l);
+//        Long id2 = comment.getId();
+//        Assert.assertEquals(id, id2);
+//    }
+//
+//    @Test
+//    @Transactional
+//    public void update() {
+//        Long id = 1l;
+//        String massage = "update";
+//        Comment comment = commentService.findById(id);
+//        comment.setMessage(massage);
+//        commentService.update(comment);
+//        Assert.assertEquals(massage, commentService.findById(id).getMessage());
+//    }
 }
