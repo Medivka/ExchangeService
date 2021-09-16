@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.List;
 
 @Service
@@ -22,7 +24,16 @@ public class CommentServiceImpl implements CommentService {
     public CommentServiceImpl(CommentDao commentDao) {
         this.commentDao = commentDao;
     }
-
+   // init method bean
+    @PostConstruct
+    public void init(){
+        System.out.println("service comment bean create");
+    }
+    //destroy method
+    @PreDestroy
+    public void destroy(){
+        System.out.println("service comment bean destroy");
+    }
     @Override
     public void createNewComment(String message, Profile profile) {
         commentDao.save(Comment.builder()

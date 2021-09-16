@@ -1,8 +1,6 @@
 package by.sacuta.exchange.service.impl;
 
-import by.sacuta.exchange.dao.CommentDao;
 import by.sacuta.exchange.dao.CourseDao;
-import by.sacuta.exchange.dao.LessonDao;
 import by.sacuta.exchange.dao.ProfileDao;
 import by.sacuta.exchange.domain.enums.CourseStatus;
 import by.sacuta.exchange.domain.enums.ProfileStatus;
@@ -10,6 +8,7 @@ import by.sacuta.exchange.domain.model.*;
 import by.sacuta.exchange.service.CourseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +16,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Scope("singleton")
 @Service
 @Transactional
 public class CourseServiceImpl implements CourseService {

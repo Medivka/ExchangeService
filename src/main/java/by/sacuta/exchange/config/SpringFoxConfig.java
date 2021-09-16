@@ -7,13 +7,16 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+import javax.annotation.PostConstruct;
+
 /**
  * @author Sacuta V.A.
  */
-
+//   http://localhost:8080/swagger-ui.html
 
 @Configuration
 public class SpringFoxConfig {
+
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
